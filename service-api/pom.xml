@@ -3,23 +3,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.adouge</groupId>
         <artifactId>adouge</artifactId>
+        <groupId>com.adouge</groupId>
         <version>1.0</version>
     </parent>
-    <artifactId>adouge-gateway</artifactId>
-    <version>1.0</version>
-    <name>adouge-gateway</name>
-    <description>adouge-gateway</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
+    <artifactId>adouge-service-api</artifactId>
+    <packaging>pom</packaging>
+    <modules>
 
+        <module>adouge-service-system-api</module>
+        <module>adouge-service-user-api</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 

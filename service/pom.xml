@@ -3,20 +3,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.adouge</groupId>
         <artifactId>adouge</artifactId>
+        <groupId>com.adouge</groupId>
         <version>1.0</version>
     </parent>
+
     <artifactId>adouge-service</artifactId>
-    <version>1.0</version>
-    <name>adouge-service</name>
-    <description>adouge-service</description>
+    <packaging>pom</packaging>
+    <modules>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
+        <module>adouge-service-system</module>
+        <module>adouge-service-user</module>
+    </modules>
     <dependencies>
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-cloud</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
     </dependencies>
-
 </project>

@@ -1,3 +1,5 @@
+server:
+  port: 8001
 spring:
   application:
     name: adouge-admin
@@ -13,8 +15,6 @@ spring:
           user:
             name: adouge
             password: 123456
-server:
-  port: 8111
 management:
   endpoints:
     web:
