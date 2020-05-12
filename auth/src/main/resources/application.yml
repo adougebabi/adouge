@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: adouge-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.24.101.194:8848 #配置Nacos地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

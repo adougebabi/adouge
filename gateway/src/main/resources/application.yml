@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: adouge-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.24.101.194:8848 #配置Nacos地址
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能
+          lower-case-service-id: true #使用小写服务名，默认是大写
+server:
+  port: 8101
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

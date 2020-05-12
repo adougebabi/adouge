@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: adouge-admin
+  security:
+    user:
+      name: adouge
+      password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.24.101.194:8848 #配置Nacos地址
+        metadata:
+          user:
+            name: adouge
+            password: 123456
+server:
+  port: 8111
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
