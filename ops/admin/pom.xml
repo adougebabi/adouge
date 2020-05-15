@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.adouge</groupId>
-        <artifactId>adouge</artifactId>
+        <artifactId>adouge-ops</artifactId>
         <version>1.0</version>
     </parent>
 
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
-    <artifactId>adouge-admin</artifactId>
+    <artifactId>adouge-ops-admin</artifactId>
     <description>admin监控</description>
     <properties>
         <spring-boot-admin.version>2.2.1</spring-boot-admin.version>
@@ -26,6 +26,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-cloud</artifactId>
+            <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>
 

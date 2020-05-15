@@ -1,14 +1,13 @@
-server:
-  port: 8301
 spring:
   application:
-    name: adouge-auth
+    name: adouge-service-user
   cloud:
     nacos:
-      discovery:
-        server-addr: 120.24.101.194:8848 #配置Nacos地址
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+      config:
+        shared-configs:
+          - refresh: true
+            data-id: ${spring.application.name}.yml
+server:
+  port: 8301
+
+

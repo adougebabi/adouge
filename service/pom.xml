@@ -11,14 +11,13 @@
     <artifactId>adouge-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-
-        <module>adouge-service-system</module>
-        <module>adouge-service-user</module>
+        <module>system</module>
+        <module>user</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-cloud</artifactId>
+            <artifactId>adouge-core-boot</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>

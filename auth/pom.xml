@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-cloud</artifactId>
+            <artifactId>adouge-core-boot</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>

@@ -11,9 +11,8 @@
     <artifactId>adouge-service-api</artifactId>
     <packaging>pom</packaging>
     <modules>
-
-        <module>adouge-service-system-api</module>
-        <module>adouge-service-user-api</module>
+        <module>system-api</module>
+        <module>user-api</module>
     </modules>
     <dependencies>
         <dependency>

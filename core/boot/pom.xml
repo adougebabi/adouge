@@ -8,13 +8,17 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>adouge-core-cloud</artifactId>
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
     <packaging>jar</packaging>
+    <artifactId>adouge-core-boot</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-cloud</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.adouge</groupId>
             <artifactId>adouge-core-launch</artifactId>
@@ -22,8 +26,9 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>
