@@ -13,5 +13,8 @@
     <packaging>jar</packaging>
     <artifactId>adouge-service-user-api</artifactId>
 
+    <dependencies>
+
+    </dependencies>
 
 </project>

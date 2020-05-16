@@ -12,8 +12,13 @@
     <version>${adouge.project.version}</version>
     <packaging>jar</packaging>
     <artifactId>adouge-core-boot</artifactId>
+    <properties>
+        <druid.version>1.1.22</druid.version>
+        <mysql.version>8.0.20</mysql.version>
+    </properties>
 
     <dependencies>
+        <!-- adouge -->
         <dependency>
             <groupId>com.adouge</groupId>
             <artifactId>adouge-core-cloud</artifactId>
@@ -25,8 +30,32 @@
             <version>${adouge.project.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-tool</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
+        <!-- nacos-config -->
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!-- druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!-- mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!-- mybatis-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
         </dependency>
     </dependencies>
 

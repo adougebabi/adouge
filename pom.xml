@@ -33,6 +33,7 @@
         <module>service</module>
         <module>service-api</module>
         <module>ops</module>
+        <module>adouge-core-tool</module>
     </modules>
 
     <dependencyManagement>
