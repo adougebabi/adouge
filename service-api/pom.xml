@@ -10,6 +10,7 @@
 
     <artifactId>adouge-service-api</artifactId>
     <packaging>pom</packaging>
+    <version>1.0</version>
     <modules>
         <module>system-api</module>
         <module>user-api</module>
@@ -25,5 +26,28 @@
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
