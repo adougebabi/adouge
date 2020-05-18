@@ -6,7 +6,7 @@
 
     <groupId>com.adouge</groupId>
     <artifactId>adouge</artifactId>
-    <version>${adouge.project.version}</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
     <properties>
         <adouge.project.version>1.0</adouge.project.version>
@@ -33,7 +33,6 @@
         <module>service</module>
         <module>service-api</module>
         <module>ops</module>
-        <module>adouge-core-tool</module>
     </modules>
 
     <dependencyManagement>
