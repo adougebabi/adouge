@@ -6,7 +6,7 @@
 
     <groupId>com.adouge</groupId>
     <artifactId>adouge</artifactId>
-    <version>1.0</version>
+    <version>${adouge.project.version}</version>
     <packaging>pom</packaging>
     <properties>
         <adouge.project.version>1.0</adouge.project.version>
