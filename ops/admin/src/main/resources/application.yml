@@ -10,7 +10,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 120.24.101.194:8848 #配置Nacos地址
+        server-addr: 129.211.7.107:8848 #配置Nacos地址
         metadata:
           user:
             name: adouge
