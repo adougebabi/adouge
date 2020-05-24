@@ -1,11 +1,56 @@
 server:
   port: 8201
 spring:
+  redis:
+    host: 129.211.7.107
+    port: 6379
+    password: adougeniubi
   application:
     name: adouge-gateway
   cloud:
+    nacos:
+      discovery:
+        server-addr: 129.211.7.107:8848 #配置Nacos地址
     gateway:
       discovery:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
           lower-case-service-id: true #使用小写服务名，默认是大写
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+      default-filters:
+#       熔断
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+#       重试
+        - name: Retry
+          args:
+            retries: 1 #需要进行重试的次数
+            statuses: BAD_GATEWAY #返回哪个状态码需要进行重试，返回状态码为5XX进行重试
+            backoff:
+              firstBackoff: 10ms
+              maxBackoff: 50ms
+              factor: 2
+              basedOnPreviousValue: false
+#       限流
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 1 #每秒允许处理的请求数量
+            redis-rate-limiter.burstCapacity: 2 #每秒最大处理的请求数量
+            key-resolver: "#{@ipKeyResolver}" #限流策略，对应策略的Bean
+          predicates:
+            - Method=GET
+            - Method=POST
+            - Method=PUT
+            - Method=DELETE
+#      routes:
+#        - id: adouge-service-user
+#          uri: lb://adouge-service-user
+#          predicates:
+#            - Path=/adouge-service-user/**
+#          filters:
+#            - SwaggerHeaderFilter
+#            - StripPrefix=1

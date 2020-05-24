@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
 //        TODO 保存用户
         entity.setUpdatedTime(LocalDateTime.now());
         entity.setCreatedTime(LocalDateTime.now());
+        entity.setIsDeleted(0);
         return super.save(entity);
     }
 
@@ -36,4 +38,20 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
         return super.removeByIds(ids);
     }
 
+    @Override
+    public boolean removeById(Serializable id) {
+        T byId = getById(id);
+        byId.setIsDeleted(1);
+        return updateById(byId);
+    }
+
+    @Override
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        idList.forEach(id -> {
+            T byId = getById(id);
+            byId.setIsDeleted(1);
+            updateById(byId);
+        });
+        return true;
+    }
 }

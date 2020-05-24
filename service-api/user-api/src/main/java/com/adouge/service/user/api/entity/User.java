@@ -1,6 +1,5 @@
 package com.adouge.service.user.api.entity;
 
-import com.adouge.core.mybatis.base.BaseEntity;
 import com.adouge.core.mybatis.base.TenantEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,12 +7,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * @author : Vinson
  * @date : 2020/5/15 5:15 下午
  */
 @Data
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
 @TableName("adouge_user")
 public class User extends TenantEntity {

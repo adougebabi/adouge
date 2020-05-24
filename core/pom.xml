@@ -23,6 +23,7 @@
         <module>mybatis</module>
         <module>boot</module>
         <module>tool</module>
+        <module>swagger</module>
     </modules>
 
     <dependencies>

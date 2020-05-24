@@ -31,6 +31,11 @@
         </dependency>
         <dependency>
             <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-swagger</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.adouge</groupId>
             <artifactId>adouge-core-tool</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>

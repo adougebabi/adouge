@@ -23,14 +23,39 @@
         </dependency>
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-boot</artifactId>
+            <artifactId>adouge-core-cloud</artifactId>
             <version>${adouge.project.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>spring-boot-starter-web</artifactId>
                     <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-tool</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
+        <!--knife4j-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+        <!--hystrix-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!--reactive-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
         </dependency>
     </dependencies>
 

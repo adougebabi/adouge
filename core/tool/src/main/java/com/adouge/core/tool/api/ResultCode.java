@@ -11,26 +11,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Getter
 @AllArgsConstructor
-public enum ResultCode implements IResultCode{
+public enum ResultCode implements IResultCode {
     /**
-     * 操作成功
+     * 200 操作成功
      */
     SUCCESS(HttpServletResponse.SC_OK, "操作成功"),
 
     /**
-     * 业务异常
+     * 400 业务异常
      */
     FAILURE(HttpServletResponse.SC_BAD_REQUEST, "业务异常"),
 
     /**
-     * 请求未授权
+     * 401 请求未授权
      */
     UN_AUTHORIZED(HttpServletResponse.SC_UNAUTHORIZED, "请求未授权"),
 
     /**
      * 404 没找到请求
      */
-    NOT_FOUND(HttpServletResponse.SC_NOT_FOUND, "404 没找到请求");
+    NOT_FOUND(HttpServletResponse.SC_NOT_FOUND, "没找到请求"),
+    /**
+     * 504 网关未能及时响应
+     */
+    GATEWAY_TIMEOUT(HttpServletResponse.SC_GATEWAY_TIMEOUT, "网关服务请求超时");
 
 
     final int code;
