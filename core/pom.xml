@@ -24,6 +24,7 @@
         <module>boot</module>
         <module>tool</module>
         <module>swagger</module>
+        <module>secure</module>
     </modules>
 
     <dependencies>

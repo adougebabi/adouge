@@ -14,14 +14,14 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>6.3</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-service-user-api</artifactId>
+            <artifactId>adouge-user-api</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>

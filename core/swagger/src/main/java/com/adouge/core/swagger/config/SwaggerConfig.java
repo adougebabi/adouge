@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -25,13 +26,18 @@ public class SwaggerConfig {
     @Bean
     @Order(value = 1)
     public Docket groupRestApi() {
+
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select()
+////                .paths(PathSelectors.any())
+//                // 错误路径不监控
+//                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+//                // 对根下所有路径进行监控
+//                .paths(PathSelectors.regex("/.*"))
+//                .build();
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.any())
-                // 错误路径不监控
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))
-                // 对根下所有路径进行监控
-                .paths(PathSelectors.regex("/.*"))
-                .build();
+                .apis(RequestHandlerSelectors.basePackage("com.adouge"))
+                .paths(PathSelectors.any()).build();
     }
 }

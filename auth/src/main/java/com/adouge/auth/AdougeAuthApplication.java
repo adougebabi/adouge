@@ -1,15 +1,18 @@
 package com.adouge.auth;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.adouge.AdougeApplication;
+import com.adouge.core.launch.annotation.AdougeSpringBootApplication;
+import com.adouge.core.launch.constant.AppConstant;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableDiscoveryClient
-@SpringBootApplication
+@AdougeSpringBootApplication
+@EnableFeignClients(AppConstant.BASE_PACKAGES)
 public class AdougeAuthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdougeAuthApplication.class, args);
+        AdougeApplication.run("adouge-auth", AdougeAuthApplication.class, args);
     }
 
 }

@@ -1,15 +1,15 @@
 package com.adouge.gateway;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.adouge.AdougeApplication;
+import com.adouge.core.launch.annotation.AdougeSpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
-@SpringBootApplication
+@AdougeSpringBootApplication
 public class AdougeGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdougeGatewayApplication.class, args);
+        AdougeApplication.run("adouge-gateway", AdougeGatewayApplication.class, args);
     }
 
 }

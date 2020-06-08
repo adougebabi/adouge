@@ -3,7 +3,6 @@ package com.adouge.core.mybatis.base;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**

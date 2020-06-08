@@ -1,6 +1,8 @@
 server:
   port: 8201
 spring:
+#  main:
+#    allow-bean-definition-overriding: true
   redis:
     host: 129.211.7.107
     port: 6379
@@ -12,19 +14,21 @@ spring:
       discovery:
         server-addr: 129.211.7.107:8848 #配置Nacos地址
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+#            allowedOrigins: "https://blog.csdn.net/moshowgame"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       discovery:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
           lower-case-service-id: true #使用小写服务名，默认是大写
-          filters:
-            - SwaggerHeaderFilter
-            - StripPrefix=1
       default-filters:
 #       熔断
-        - name: Hystrix
-          args:
-            name: fallbackcmd
-            fallbackUri: forward:/fallback
 #       重试
         - name: Retry
           args:
@@ -36,16 +40,20 @@ spring:
               factor: 2
               basedOnPreviousValue: false
 #       限流
-        - name: RequestRateLimiter
-          args:
-            redis-rate-limiter.replenishRate: 1 #每秒允许处理的请求数量
-            redis-rate-limiter.burstCapacity: 2 #每秒最大处理的请求数量
-            key-resolver: "#{@ipKeyResolver}" #限流策略，对应策略的Bean
-          predicates:
-            - Method=GET
-            - Method=POST
-            - Method=PUT
-            - Method=DELETE
+    sentinel:
+      transport:
+        dashboard: 129.211.7.107:8858 #配置sentinel dashboard地址
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            dataId: ${spring.application.name}-sentinel
+            groupId: DEFAULT_GROUP
+            rule-type: flow
+      eager: true
+      filter:
+        enabled: true
 #      routes:
 #        - id: adouge-service-user
 #          uri: lb://adouge-service-user
@@ -54,3 +62,8 @@ spring:
 #          filters:
 #            - SwaggerHeaderFilter
 #            - StripPrefix=1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

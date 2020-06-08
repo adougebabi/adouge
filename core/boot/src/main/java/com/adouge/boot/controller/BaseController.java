@@ -1,6 +1,6 @@
 package com.adouge.boot.controller;
 
-import com.adouge.core.tool.api.R;
+import com.adouge.core.tool.api.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +37,8 @@ public class BaseController<T> {
      * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> R<T> data(T data) {
-        return R.data(data);
+    protected <T> Result<T> data(T data) {
+        return Result.data(data);
     }
 
     /**
@@ -49,8 +49,8 @@ public class BaseController<T> {
      * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> R<T> data(T data, String msg) {
-        return R.data(data, msg);
+    protected <T> Result<T> data(T data, String msg) {
+        return Result.data(data, msg);
     }
 
     /**
@@ -62,8 +62,8 @@ public class BaseController<T> {
      * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> R<T> data(T data, String msg, int code) {
-        return R.data(code, data, msg);
+    protected <T> Result<T> data(T data, String msg, int code) {
+        return Result.data(code, data, msg);
     }
 
     /**
@@ -72,8 +72,8 @@ public class BaseController<T> {
      * @param msg 消息
      * @return Result
      */
-    protected R<?> success(String msg) {
-        return R.success(msg);
+    protected Result<?> success(String msg) {
+        return Result.success(msg);
     }
 
     /**
@@ -82,8 +82,8 @@ public class BaseController<T> {
      * @param msg 消息
      * @return Result
      */
-    protected R<?> fail(String msg) {
-        return R.fail(msg);
+    protected Result<?> fail(String msg) {
+        return Result.fail(msg);
     }
 
     /**
@@ -92,8 +92,8 @@ public class BaseController<T> {
      * @param flag 是否成功
      * @return Result
      */
-    protected R<?> status(boolean flag) {
-        return R.status(flag);
+    protected Result<?> status(boolean flag) {
+        return Result.status(flag);
     }
 
 

@@ -2,11 +2,11 @@ package com.adouge.core.mybatis.base;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,18 +18,11 @@ import java.util.List;
 public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> extends ServiceImpl<M, T> implements BaseService<T> {
 
     @Override
-    public boolean save(T entity) {
-//        TODO 保存用户
-        entity.setUpdatedTime(LocalDateTime.now());
-        entity.setCreatedTime(LocalDateTime.now());
-        entity.setIsDeleted(0);
-        return super.save(entity);
-    }
-
-    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class})
     public boolean updateById(T entity) {
-//        TODO 保存用户
-        entity.setUpdatedTime(LocalDateTime.now());
+//        这个要设置空不然mybatisplus 不会自动填充
+        entity.setUpdatedTime(null);
+        entity.setUpdatedBy(null);
         return super.updateById(entity);
     }
 
@@ -38,20 +31,16 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
         return super.removeByIds(ids);
     }
 
-    @Override
+    /*@Override
     public boolean removeById(Serializable id) {
         T byId = getById(id);
         byId.setIsDeleted(1);
         return updateById(byId);
-    }
+    }*/
 
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
-        idList.forEach(id -> {
-            T byId = getById(id);
-            byId.setIsDeleted(1);
-            updateById(byId);
-        });
+        idList.forEach(this::removeById);
         return true;
     }
 }

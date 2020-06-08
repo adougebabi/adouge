@@ -11,7 +11,7 @@
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
     <packaging>jar</packaging>
-    <artifactId>adouge-service-user-api</artifactId>
+    <artifactId>adouge-user-api</artifactId>
 
     <dependencies>
 

@@ -12,8 +12,7 @@
     <!--<property name="app-name" value="provider"/>-->
     <!--    <contextName>${spring.application.name}</contextName>-->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-<!--        <destination>129.211.7.107:5000</destination>-->
-<!--                <destination>localhost:5000</destination>-->
+        <destination>129.211.7.107:5000</destination>
         <destination>${logstash-server-addr}</destination>
         <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
@@ -34,7 +33,7 @@
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="LOGSTASH"/>
+<!--        <appender-ref ref="LOGSTASH"/>-->
     </root>
 
     <!-- 日志输出级别 -->

@@ -1,15 +1,15 @@
 package com.adouge.service.system;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.adouge.AdougeApplication;
+import com.adouge.core.launch.annotation.AdougeSpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
-@SpringBootApplication
+@AdougeSpringBootApplication
 public class AdougeServiceSystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdougeServiceSystemApplication.class, args);
+        AdougeApplication.run("adouge-service-system", AdougeServiceSystemApplication.class, args);
     }
 
 }

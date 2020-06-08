@@ -15,7 +15,11 @@
     <packaging>jar</packaging>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-system-api</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

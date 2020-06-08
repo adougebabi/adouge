@@ -1,5 +1,23 @@
 server:
   port: 8101
 spring:
+  redis:
+    host: 129.211.7.107
+    port: 6379
+    password: adougeniubi
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 129.211.7.107:8848 #配置Nacos地址
   application:
     name: adouge-auth
+  datasource:
+    url: jdbc:mysql://rm-bp13y125z23teso8j9o.mysql.rds.aliyuncs.com:3306/adouge?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=UTC
+    username: adouge
+    password: fcJb8ZgAQY2bEkQ9
+#开放所有端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

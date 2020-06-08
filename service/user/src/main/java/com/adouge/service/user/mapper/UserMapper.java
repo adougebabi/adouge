@@ -1,6 +1,6 @@
 package com.adouge.service.user.mapper;
 
-import com.adouge.service.user.api.entity.User;
+import com.adouge.user.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

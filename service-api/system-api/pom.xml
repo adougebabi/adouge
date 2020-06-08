@@ -11,7 +11,7 @@
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
     <packaging>jar</packaging>
-    <artifactId>adouge-service-system-api</artifactId>
+    <artifactId>adouge-system-api</artifactId>
 
 
 </project>
