@@ -32,14 +32,6 @@ public class SwaggerResourceConfig implements SwaggerResourcesProvider {
         routes1.forEach(route ->
                 resources.add(swaggerResource(route.getId().replace("ReactiveCompositeDiscoveryClient_", ""),
                         String.join("", route.getUri().toString().replace("lb://", ""), "/v2/api-docs"))));
-        //取出gateway的route
-//        routeLocator.getRoutes().subscribe(route -> routes.add(route.getId()));
-//        //结合配置的route-路径(Path)，和route过滤，只获取有效的route节点
-//        gatewayProperties.getRoutes().stream().filter(routeDefinition -> routes.contains(routeDefinition.getId()))
-//                .forEach(routeDefinition -> routeDefinition.getPredicates().stream()
-//                        .filter(predicateDefinition -> ("Path").equalsIgnoreCase(predicateDefinition.getName()))
-//                        .forEach(predicateDefinition -> resources.add(swaggerResource(routeDefinition.getId(),
-//                                "/"+routeDefinition.getId()+API_URI ))));
         return resources;
     }
 

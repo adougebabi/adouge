@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class RestfulUrlCleaner implements UrlCleaner {
 
-    private static List<RestfulPattern> patterns = new ArrayList<>();
+    private static final List<RestfulPattern> patterns = new ArrayList<>();
     private static final String PATTERN = "\\{[^\\}]+\\}";
 
     private RestfulUrlCleaner() {

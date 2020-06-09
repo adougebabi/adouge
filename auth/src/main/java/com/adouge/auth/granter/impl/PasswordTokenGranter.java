@@ -27,6 +27,9 @@ public class PasswordTokenGranter implements ITokenGranter {
         String userType = parameter.getArgs().getStr("userType");
         Result<UserInfo> userInfo;
         switch (userType) {
+            case "api":
+                userInfo = userClient.userInfo(tenantId, account, "123456");
+                break;
             default:
                 userInfo = userClient.userInfo(tenantId, account, password);
                 break;

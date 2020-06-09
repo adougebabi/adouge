@@ -31,13 +31,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
         return super.removeByIds(ids);
     }
 
-    /*@Override
-    public boolean removeById(Serializable id) {
-        T byId = getById(id);
-        byId.setIsDeleted(1);
-        return updateById(byId);
-    }*/
-
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         idList.forEach(this::removeById);

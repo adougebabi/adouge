@@ -14,12 +14,19 @@ import java.util.Objects;
  */
 @Configuration
 public class RedisRateLimiterConfig {
-    /*    用户名过滤*/
+    /**
+     * 用户名过滤
+     * @return KeyResolver
+     */
     @Bean
     public KeyResolver userKeyResolver() {
         return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getQueryParams().getFirst("username")));
     }
-    /*    ip过滤*/
+
+    /**
+     * ip过滤
+     * @return KeyResolver
+     */
     @Bean
     @Primary
     public KeyResolver ipKeyResolver() {

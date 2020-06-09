@@ -12,10 +12,23 @@ import java.util.List;
  */
 public interface IMenuService extends BaseService<Menu> {
 
+    /**
+     * 获取路由
+     * @return 路由list
+     */
     List<MenuVO> routes();
 
+    /**
+     * 根据父id获取子菜单
+     * @param id 父id
+     * @return 菜单列表
+     */
     List<MenuVO> listByParentId(long id);
 
+    /**
+     * 树形列表
+     * @return 树
+     */
     List<MenuVO> tree();
 
 }

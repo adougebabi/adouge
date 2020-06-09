@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 public class RedisUtil {
 
-	private RedisTemplate<String, Object> redisTemplate;
+	private final RedisTemplate<String, Object> redisTemplate;
 
 	//=============================common============================
 
@@ -70,7 +70,6 @@ public class RedisUtil {
 	 *
 	 * @param key 可以传一个值 或多个
 	 */
-	@SuppressWarnings("unchecked")
 	public void del(String... key) {
 		if (key != null && key.length > 0) {
 			if (key.length == 1) {
@@ -424,8 +423,7 @@ public class RedisUtil {
 	 */
 	public long setRemove(String key, Object... values) {
 		try {
-			Long count = redisTemplate.opsForSet().remove(key, values);
-			return count;
+			return redisTemplate.opsForSet().remove(key, values);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -585,8 +583,7 @@ public class RedisUtil {
 	 */
 	public long lRemove(String key, long count, Object value) {
 		try {
-			Long remove = redisTemplate.opsForList().remove(key, count, value);
-			return remove;
+			return redisTemplate.opsForList().remove(key, count, value);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

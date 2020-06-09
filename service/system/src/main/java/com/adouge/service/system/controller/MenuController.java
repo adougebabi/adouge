@@ -59,9 +59,6 @@ public class MenuController {
         return Result.data(service.listByParentId(id));
     }
 
-    /**
-     * 新增或修改
-     */
     @PostMapping("/")
 //    @PreAuth(RoleConstant.HAS_ROLE_ADMIN)
     @ApiOperationSupport(order = 3)
@@ -71,9 +68,6 @@ public class MenuController {
     }
 
 
-    /**
-     * 删除
-     */
     @DeleteMapping("/{ids}")
 //    @PreAuth(RoleConstant.HAS_ROLE_ADMIN)
     @ApiOperationSupport(order = 4)

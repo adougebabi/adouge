@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @date : 2020/5/25 10:38 下午
  */
 public class ParamMap extends LinkedCaseInsensitiveMap<Object> {
-    public ParamMap() {
+    private ParamMap() {
     }
 
     /**

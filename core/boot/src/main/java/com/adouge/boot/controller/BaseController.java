@@ -34,10 +34,9 @@ public class BaseController<T> {
      * 返回Result
      *
      * @param data 数据
-     * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> Result<T> data(T data) {
+    protected Result<T> data(T data) {
         return Result.data(data);
     }
 
@@ -46,10 +45,9 @@ public class BaseController<T> {
      *
      * @param data 数据
      * @param msg  消息
-     * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> Result<T> data(T data, String msg) {
+    protected Result<T> data(T data, String msg) {
         return Result.data(data, msg);
     }
 
@@ -62,7 +60,7 @@ public class BaseController<T> {
      * @param <T>  T 泛型标记
      * @return Result
      */
-    protected <T> Result<T> data(T data, String msg, int code) {
+    protected Result<T> data(T data, String msg, int code) {
         return Result.data(code, data, msg);
     }
 

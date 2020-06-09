@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date : 2020/5/26 8:29 下午
  */
 public class TokenBuilder {
-    private static Map<String, ITokenGranter> GRANTER_POOL = new ConcurrentHashMap<>();
+    private static final Map<String, ITokenGranter> GRANTER_POOL = new ConcurrentHashMap<>();
     static {
         GRANTER_POOL.put(PasswordTokenGranter.GRANT_TYPE, SpringUtil.getBean(PasswordTokenGranter.class));
     }
