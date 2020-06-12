@@ -1,0 +1,113 @@
+package $!{package.Controller};
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import lombok.AllArgsConstructor;
+import javax.validation.Valid;
+import java.util.List;
+import com.adouge.core.mybatis.support.Query;
+import com.adouge.core.mybatis.support.Condition;
+import com.adouge.core.tool.api.Result;
+import org.springframework.web.bind.annotation.*;
+#if($!{superEntityClass})
+import org.springframework.web.bind.annotation.RequestParam;
+#end
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import $!{package.Entity}.$!{entity};
+#set($voPackage=$package.Entity.replace("entity","vo"))
+import $!{voPackage}.$!{entity}VO;
+#set($wrapperPackage=$package.Entity.replace("entity","wrapper"))
+#if($!{cfg.hasWrapper})
+import $!{wrapperPackage}.$!{entity}Wrapper;
+#end
+import $!{package.Service}.$!{table.serviceName};
+#if($!{superControllerClassPackage})
+import $!{superControllerClassPackage};
+#end
+#if(!$!{superEntityClass})
+#end
+
+/**
+ * $!{table.comment} 控制器
+ *
+ * @author $!{author}
+ * @since $!{date}
+ */
+@RestController
+@AllArgsConstructor
+@RequestMapping("#if($!{package.ModuleName})/$!{package.ModuleName}#end/$!{cfg.entityKey}")
+@Api(value = "$!{table.comment}", tags = "$!{table.comment}接口")
+#if($!{superControllerClass})
+public class $!{table.controllerName} extends $!{superControllerClass} {
+#else
+public class $!{table.controllerName} {
+#end
+
+	private final $!{table.serviceName} $!{table.entityPath}Service;
+
+#if($!{cfg.hasWrapper})
+	/**
+	 * 详情
+	 */
+	@GetMapping("/detail")
+	@ApiOperationSupport(order = 1)
+	@ApiOperation(value = "详情", notes = "传入$!{table.entityPath}")
+	public Result<$!{entity}VO> detail($!{entity} $!{table.entityPath}) {
+		return Result.data($!{entity}Wrapper.build().entityVO($!{table.entityPath}Service.getOne(Condition.getQueryWrapper($!{table.entityPath}))));
+	}
+
+	/**
+	 * 分页 $!{table.comment}
+	 */
+	@GetMapping("/list")
+	@ApiOperationSupport(order = 2)
+	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+	public Result<IPage<$!{entity}VO>> list($!{entity} $!{table.entityPath}, Query query) {
+		return Result.data($!{entity}Wrapper.build().pageVO($!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}))));
+	}
+
+#else
+	/**
+	 * 详情
+	 */
+	@GetMapping("/detail")
+	@ApiOperationSupport(order = 1)
+	@ApiOperation(value = "详情", notes = "传入$!{table.entityPath}")
+	public Result<$!{entity}> detail($!{entity} $!{table.entityPath}) {
+		return Result.data($!{table.entityPath}Service.getOne(Condition.getQueryWrapper($!{table.entityPath})));
+	}
+
+	/**
+	 * 分页 $!{table.comment}
+	 */
+	@GetMapping("/list")
+	@ApiOperationSupport(order = 2)
+	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+	public Result<IPage<$!{entity}>> list($!{entity} $!{table.entityPath}, Query query) {
+		return Result.data($!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath})));
+	}
+#end
+
+	/**
+	 * 新增或修改 $!{table.comment}
+	 */
+	@PostMapping("/")
+	@ApiOperationSupport(order = 3)
+	@ApiOperation(value = "新增或修改", notes = "传入$!{table.entityPath}")
+	public Result<?> submit(@Valid @RequestBody $!{entity} $!{table.entityPath}) {
+		return Result.status($!{table.entityPath}Service.saveOrUpdate($!{table.entityPath}));
+	}
+
+	/**
+	 * 删除 $!{table.comment}
+	 */
+	@DeleteMapping("/{ids}")
+	@ApiOperationSupport(order = 4)
+	@ApiOperation(value = "逻辑删除", notes = "传入ids")
+	public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
+		return Result.status($!{table.entityPath}Service.removeByIds(ids));
+	}
+
+}

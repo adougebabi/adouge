@@ -25,6 +25,7 @@
         <module>tool</module>
         <module>swagger</module>
         <module>secure</module>
+        <module>develop</module>
     </modules>
 
     <dependencies>

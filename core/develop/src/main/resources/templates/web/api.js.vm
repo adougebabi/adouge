@@ -1,0 +1,24 @@
+import request from '@/router/axios'
+import { baseUrl } from '@/config/env'
+export const list = (current, size, params) =>
+request({
+  url: baseUrl + '/$!{cfg.serviceName}/$!{cfg.entityKey}/list',
+  method: 'get',
+  params: {
+    ...params,
+    current,
+    size
+  }
+})
+export const add = (data) =>
+request({
+  url: baseUrl + '/$!{cfg.serviceName}/$!{cfg.entityKey}/',
+  method: 'post',
+  data: data
+})
+export const del = (ids) =>
+request({
+  url: baseUrl + '/$!{cfg.serviceName}/$!{cfg.entityKey}/' + ids,
+  method: 'delete'
+})
+export const update = (key, data) => add(data)

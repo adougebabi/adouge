@@ -1,36 +1,75 @@
 package com.adouge.service.user.controller;
 
 import com.adouge.boot.controller.BaseController;
+import com.adouge.core.mybatis.support.Condition;
+import com.adouge.core.mybatis.support.Query;
 import com.adouge.core.tool.api.Result;
-import com.adouge.user.entity.User;
+import com.adouge.service.user.entity.User;
 import com.adouge.service.user.service.IUserService;
+import com.adouge.service.user.vo.UserVO;
+import com.adouge.service.user.wrapper.UserWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author : Vinson
  * @date : 2020/5/15 5:05 下午
  */
 @RestController
-@Api(tags = "用户模块")
-@RequiredArgsConstructor
-public class UserController extends BaseController<User> {
+@AllArgsConstructor
+@RequestMapping("/user")
+@Api(value = "用户表 ", tags = "用户表 接口")
+public class UserController {
+
     private final IUserService userService;
 
-    @GetMapping("/{id}")
-    @ApiOperation(value = "获取用户")
-    public Result<User> get(@PathVariable String id) {
-        return Result.data(userService.getById(id));
+    /**
+     * 详情
+     */
+    @GetMapping("/detail")
+    @ApiOperationSupport(order = 1)
+    @ApiOperation(value = "详情", notes = "传入user")
+    public Result<UserVO> detail(User user) {
+        return Result.data(UserWrapper.build().entityVO(userService.getOne(Condition.getQueryWrapper(user))));
     }
 
+    /**
+     * 分页 用户表
+     */
+    @GetMapping("/list")
+    @ApiOperationSupport(order = 2)
+    @ApiOperation(value = "分页", notes = "传入user")
+    public Result<IPage<UserVO>> list(User user, Query query) {
+        return Result.data(UserWrapper.build().pageVO(userService.page(Condition.getPage(query), Condition.getQueryWrapper(user))));
+    }
+
+
+    /**
+     * 新增或修改 用户表
+     */
     @PostMapping("/")
-    @ApiOperation(value = "添加用户")
-    public Result<User> save(User user) {
-        return userService.save(user)? Result.success("保存成功"): Result.fail("保存失败");
+    @ApiOperationSupport(order = 3)
+    @ApiOperation(value = "新增或修改", notes = "传入user")
+    public Result<?> submit(@Valid @RequestBody User user) {
+        return Result.status(userService.saveOrUpdate(user));
+    }
+
+    /**
+     * 删除 用户表
+     */
+    @DeleteMapping("/{ids}")
+    @ApiOperationSupport(order = 4)
+    @ApiOperation(value = "逻辑删除", notes = "传入ids")
+    public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
+        return Result.status(userService.removeByIds(ids));
     }
 }

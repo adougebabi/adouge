@@ -1,0 +1,48 @@
+<template>
+  <basic-container>
+    <avue-crud
+            v-bind="bindVal"
+            v-on="onEvent"
+            v-model="form"
+            :table-loading="loading"
+            @selection-change="selectionChange"
+            :show-column.sync="showColumn"
+            :page.sync="page"
+    >
+      <template slot="menuLeft">
+        <el-button
+                @click="batchDel"
+                size="small"
+                type="danger"
+                icon="el-icon-delete"
+        >批量删除</el-button
+        >
+      </template>
+    </avue-crud>
+  </basic-container>
+</template>
+
+<script>
+  export default window.$crudCommon(
+          {
+            data() {
+              return {
+                showColumn: [
+                  #foreach($field in $!{table.fields})
+                    #if($!{field.name}!=$!{cfg.tenantColumn})
+                       '$!{field.propertyName}',
+                    #end
+                  #end
+                ]
+              }
+            },
+            methods: {
+            }
+          },
+          {
+            name: '$!{cfg.servicePackage}/$!{cfg.entityKey}', //模块名字
+          }
+  )
+</script>
+<style lang="scss">
+</style>

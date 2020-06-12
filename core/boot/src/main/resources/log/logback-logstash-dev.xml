@@ -11,25 +11,25 @@
     <!--定义参数,后面可以通过${app.name}使用-->
     <!--<property name="app-name" value="provider"/>-->
     <!--    <contextName>${spring.application.name}</contextName>-->
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>129.211.7.107:5000</destination>
-        <destination>${logstash-server-addr}</destination>
-        <!-- encoder必须配置,有多种可选 -->
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
-            <!--在生成的json中会加这个字段-->
-            <customFields>{"appname":"${appname}"}</customFields>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>${log.level}</level>
-        </filter>
-        <connectionStrategy>
-            <roundRobin>
-                <!-- 轮询时间间隔-->
-                <connectionTTL>5 minutes</connectionTTL>
-                <!--<connectionTTL>5 seconds</connectionTTL>-->
-            </roundRobin>
-        </connectionStrategy>
-    </appender>
+<!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <destination>129.211.7.107:5000</destination>-->
+<!--        <destination>${logstash-server-addr}</destination>-->
+<!--        &lt;!&ndash; encoder必须配置,有多种可选 &ndash;&gt;-->
+<!--        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">-->
+<!--            &lt;!&ndash;在生成的json中会加这个字段&ndash;&gt;-->
+<!--            <customFields>{"appname":"${appname}"}</customFields>-->
+<!--        </encoder>-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>${log.level}</level>-->
+<!--        </filter>-->
+<!--        <connectionStrategy>-->
+<!--            <roundRobin>-->
+<!--                &lt;!&ndash; 轮询时间间隔&ndash;&gt;-->
+<!--                <connectionTTL>5 minutes</connectionTTL>-->
+<!--                &lt;!&ndash;<connectionTTL>5 seconds</connectionTTL>&ndash;&gt;-->
+<!--            </roundRobin>-->
+<!--        </connectionStrategy>-->
+<!--    </appender>-->
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>

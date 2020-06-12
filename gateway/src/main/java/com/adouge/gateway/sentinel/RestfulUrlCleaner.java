@@ -1,13 +1,12 @@
 package com.adouge.gateway.sentinel;
 
 
-import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.UrlCleaner;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.google.common.collect.Sets;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +16,7 @@ import java.util.regex.Pattern;
  */
 public class RestfulUrlCleaner implements UrlCleaner {
 
-    private static final List<RestfulPattern> patterns = new ArrayList<>();
+    private static final Set<RestfulPattern> patterns = Sets.newConcurrentHashSet();
     private static final String PATTERN = "\\{[^\\}]+\\}";
 
     private RestfulUrlCleaner() {
@@ -40,12 +39,12 @@ public class RestfulUrlCleaner implements UrlCleaner {
             //如果发现类似{xxx}的结构，断定其为RESTful接口
             if (m.find()) {
                 RestfulPattern restfulPattern = new RestfulPattern(Pattern.compile(m.replaceAll("\\\\S+?")), rule.getResource());
-                if (ObjectUtil.isNotNull(restfulPattern)&& !patterns.contains(restfulPattern)) {
+//                if (ObjectUtil.isNotNull(restfulPattern)&& !patterns.contains(restfulPattern)) {
                     patterns.add(restfulPattern);
-                }
+//                }
             }
         }
-        Collections.sort(patterns);
+//        Collections.sort(patterns);
         return restfulUrlCleaner;
     }
 

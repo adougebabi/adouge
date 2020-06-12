@@ -7,8 +7,8 @@ import com.adouge.secure.AuthInfo;
 import com.adouge.secure.TokenInfo;
 import com.adouge.core.launch.constant.TokenConstant;
 import com.adouge.secure.utils.SecureUtil;
-import com.adouge.user.entity.User;
-import com.adouge.user.entity.UserInfo;
+import com.adouge.service.user.entity.User;
+import com.adouge.service.user.entity.UserInfo;
 
 /**
  * @author : Vinson

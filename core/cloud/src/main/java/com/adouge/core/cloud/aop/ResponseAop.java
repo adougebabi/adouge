@@ -2,13 +2,8 @@ package com.adouge.core.cloud.aop;
 
 import com.adouge.core.tool.api.Result;
 import com.adouge.core.tool.utils.WebUtil;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
@@ -16,8 +11,8 @@ import java.util.Objects;
  * @author : Vinson
  * @date : 2020/5/31 8:05 下午
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class ResponseAop {
 
     @Around("@annotation(org.springframework.web.bind.annotation.GetMapping)||" +

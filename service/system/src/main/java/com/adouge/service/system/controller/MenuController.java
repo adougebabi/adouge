@@ -4,8 +4,8 @@ import com.adouge.core.mybatis.support.Condition;
 import com.adouge.core.tool.api.Result;
 import com.adouge.service.system.service.IMenuService;
 import com.adouge.service.system.wrapper.MenuWrapper;
-import com.adouge.system.entity.Menu;
-import com.adouge.system.vo.MenuVO;
+import com.adouge.service.system.entity.Menu;
+import com.adouge.service.system.vo.MenuVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,36 +32,32 @@ public class MenuController {
 
     private final IMenuService service;
 
-    @GetMapping("/detail")
-    @ApiOperationSupport(order = 1)
-    @ApiOperation(value = "详情", notes = "传入menu")
-    public Result<MenuVO> detail(Menu menu) {
-        return Result.data(MenuWrapper.build().entityVO(service.getOne(Condition.getQueryWrapper(menu))));
-    }
+
 
     @GetMapping("/routes")
+    @ApiOperationSupport(order = 1)
     @ApiOperation(value = "获取路由")
     public Result<List<MenuVO>> routes() {
         return Result.data(service.routes());
     }
 
-
+    @GetMapping("/detail")
+    @ApiOperationSupport(order = 2)
+    @ApiOperation(value = "详情", notes = "传入menu")
+    public Result<MenuVO> detail(Menu menu) {
+        return Result.data(MenuWrapper.build().entityVO(service.getOne(Condition.getQueryWrapper(menu))));
+    }
     @GetMapping("/list")
+    @ApiOperationSupport(order = 3)
     @ApiOperation(value = "获取列表数据")
     public Result<List<MenuVO>> list(@ApiIgnore @RequestParam Map<String, Object> menu) {
         return Result.data(MenuWrapper.build().listNodeVO(service.list(Condition.getQueryWrapper(menu, Menu.class).lambda()
                 .orderByAsc(Menu::getSort))));
     }
 
-    @GetMapping("/listByParentId/{id}")
-    @ApiOperation(value = "根据父id查找菜单")
-    public Result<List<MenuVO>> listByParentId(@PathVariable long id) {
-        return Result.data(service.listByParentId(id));
-    }
-
     @PostMapping("/")
 //    @PreAuth(RoleConstant.HAS_ROLE_ADMIN)
-    @ApiOperationSupport(order = 3)
+    @ApiOperationSupport(order = 4)
     @ApiOperation(value = "新增或修改", notes = "传入menu")
     public Result<?> submit(@Valid @RequestBody Menu menu) {
         return Result.status(service.saveOrUpdate(menu));
@@ -70,14 +66,14 @@ public class MenuController {
 
     @DeleteMapping("/{ids}")
 //    @PreAuth(RoleConstant.HAS_ROLE_ADMIN)
-    @ApiOperationSupport(order = 4)
+    @ApiOperationSupport(order = 5)
     @ApiOperation(value = "删除", notes = "传入ids")
     public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
         return Result.status(service.removeByIds(ids));
     }
 
     @GetMapping("/tree")
-    @ApiOperationSupport(order = 5)
+    @ApiOperationSupport(order = 7)
     @ApiOperation(value = "获取树")
     public Result<?> tree() {
         return Result.data(service.tree());

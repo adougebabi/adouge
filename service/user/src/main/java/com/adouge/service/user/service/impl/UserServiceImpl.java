@@ -3,10 +3,11 @@ package com.adouge.service.user.service.impl;
 import cn.hutool.core.util.ObjectUtil;
 import com.adouge.core.mybatis.base.BaseServiceImpl;
 import com.adouge.secure.utils.SecureUtil;
-import com.adouge.user.entity.User;
-import com.adouge.user.entity.UserInfo;
+import com.adouge.service.user.entity.User;
+import com.adouge.service.user.entity.UserInfo;
 import com.adouge.service.user.mapper.UserMapper;
 import com.adouge.service.user.service.IUserService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
 

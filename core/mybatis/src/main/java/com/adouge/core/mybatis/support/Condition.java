@@ -1,5 +1,6 @@
 package com.adouge.core.mybatis.support;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.adouge.core.launch.constant.TokenConstant;
 import com.adouge.core.tool.support.ParamMap;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -27,8 +28,12 @@ public class Condition {
     public static <T> IPage<T> getPage(Query query) {
         Page<T> page = new Page<>(query.getCurrent(), query.getSize());
         List<OrderItem> orderItemList = new ArrayList<>();
-        orderItemList.addAll(OrderItem.ascs(SqlKeyword.filter(query.getAscs()).split(",")));
-        orderItemList.addAll(OrderItem.descs(SqlKeyword.filter(query.getDescs()).split(",")));
+        if (ObjectUtil.isNotNull(query.getAscs())) {
+            orderItemList.addAll(OrderItem.ascs(SqlKeyword.filter(query.getAscs()).split(",")));
+        }
+        if (ObjectUtil.isNotNull(query.getDescs())) {
+            orderItemList.addAll(OrderItem.descs(SqlKeyword.filter(query.getDescs()).split(",")));
+        }
         page.setOrders(orderItemList);
         return page;
     }

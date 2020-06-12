@@ -1,8 +1,9 @@
 package com.adouge.service.user.service;
 
 import com.adouge.core.mybatis.base.BaseService;
-import com.adouge.user.entity.User;
-import com.adouge.user.entity.UserInfo;
+import com.adouge.service.user.entity.User;
+import com.adouge.service.user.entity.UserInfo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
  * @author : Vinson

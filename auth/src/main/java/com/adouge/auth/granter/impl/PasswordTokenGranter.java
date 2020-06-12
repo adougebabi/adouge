@@ -3,8 +3,8 @@ package com.adouge.auth.granter.impl;
 import com.adouge.auth.granter.ITokenGranter;
 import com.adouge.auth.granter.TokenParameter;
 import com.adouge.core.tool.api.Result;
-import com.adouge.user.entity.UserInfo;
-import com.adouge.user.feign.IUserClient;
+import com.adouge.service.user.entity.UserInfo;
+import com.adouge.service.user.feign.IUserClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

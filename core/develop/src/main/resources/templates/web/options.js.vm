@@ -1,0 +1,56 @@
+// export default (safe) => {
+//   console.log(safe)
+export default () => {
+    return {
+    index: true,
+    lazy: true,
+    indexLabel: '序号',
+    align: 'center',
+    headerAlign: 'left',
+    border: true,
+    searchMenuSpan: 8,
+    stripe: true,
+    selection: true,
+    searchShow: false,
+    column: [
+        #foreach($field in $!{table.fields})
+            #if($!{field.name}!=$!{cfg.tenantColumn})
+                {
+                    label: "$!{field.comment}",
+                    prop: "$!{field.propertyName}",
+                    rules: [{
+                        required: true,
+                        message: "请输入$!{field.comment}",
+                        trigger: "blur"
+                    }]
+                },
+            #end
+        #end
+        {
+            label: '创建者',
+            prop: 'createdBy',
+            addDisplay: false,
+            editDisplay: false
+        },
+        {
+            label: '创建时间',
+            prop: 'createdTime',
+            addDisplay: false,
+            editDisplay: false
+        },
+        {
+            label: '修改者',
+            prop: 'updatedBy',
+            addDisplay: false,
+            editDisplay: false
+        },
+        {
+            label: '修改时间',
+            prop: 'updatedTime',
+            type: 'datetime',
+            addDisplay: false,
+            editDisplay: false
+        }
+    ]
+}
+}

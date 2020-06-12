@@ -1,7 +1,7 @@
 package com.adouge.auth.granter;
 
 
-import com.adouge.user.entity.UserInfo;
+import com.adouge.service.user.entity.UserInfo;
 
 /**
  * @author : Vinson

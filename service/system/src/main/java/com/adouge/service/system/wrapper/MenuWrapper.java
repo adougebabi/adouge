@@ -5,8 +5,8 @@ import cn.hutool.extra.spring.SpringUtil;
 import com.adouge.core.mybatis.support.BaseEntityWrapper;
 import com.adouge.core.tool.node.ForestNodeMerger;
 import com.adouge.service.system.service.IMenuService;
-import com.adouge.system.entity.Menu;
-import com.adouge.system.vo.MenuVO;
+import com.adouge.service.system.entity.Menu;
+import com.adouge.service.system.vo.MenuVO;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.adouge.service.system.mapper.MenuMapper">
     <!-- 通用查询映射结果 -->
-    <resultMap id="menuResultMap" type="com.adouge.system.entity.Menu">
+    <resultMap id="menuResultMap" type="com.adouge.service.system.entity.Menu">
         <id column="id" property="id"/>
         <result column="code" property="code"/>
         <result column="parent_id" property="parentId"/>
@@ -25,11 +25,6 @@
         <result column="v" property="value"/>
         <result column="k" property="key"/>
     </resultMap>
-
-    <select id="listByParentId" resultMap="menuResultMap">
-        select * from adouge_menu where is_deleted = 0 and parent_id=#{parent_id}
-    </select>
-
     <select id="tree" resultMap="treeNodeResultMap">
         select id, parent_id, name as title, id as v, id as k from adouge_menu where is_deleted = 0 and type = 1
     </select>

@@ -1,7 +1,9 @@
 package com.adouge.gateway.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +18,17 @@ import java.util.Optional;
  * @date : 2020/5/19 1:59 下午
  */
 
+@Lazy
 @RestController
 @RequiredArgsConstructor
 public class SwaggerController {
-    private final SecurityConfiguration securityConfiguration;
-    private final UiConfiguration uiConfiguration;
+    @Autowired(required = false)
+    private SecurityConfiguration securityConfiguration;
+    @Autowired(required = false)
+    private UiConfiguration uiConfiguration;
     private final LoadBalancerClient loadBalancerClient;
     private final SwaggerResourcesProvider swaggerResources;
+
 
     @GetMapping("/swagger-resources/configuration/security")
     public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {

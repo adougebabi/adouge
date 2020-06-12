@@ -8,7 +8,7 @@ import com.adouge.auth.granter.TokenParameter;
 import com.adouge.auth.utils.TokenUtils;
 import com.adouge.core.tool.api.Result;
 import com.adouge.core.tool.utils.RedisUtil;
-import com.adouge.user.entity.UserInfo;
+import com.adouge.service.user.entity.UserInfo;
 import com.wf.captcha.GifCaptcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

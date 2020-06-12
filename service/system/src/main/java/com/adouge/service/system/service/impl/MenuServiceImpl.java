@@ -5,8 +5,8 @@ import com.adouge.core.tool.node.ForestNodeMerger;
 import com.adouge.service.system.mapper.MenuMapper;
 import com.adouge.service.system.service.IMenuService;
 import com.adouge.service.system.wrapper.MenuWrapper;
-import com.adouge.system.entity.Menu;
-import com.adouge.system.vo.MenuVO;
+import com.adouge.service.system.entity.Menu;
+import com.adouge.service.system.vo.MenuVO;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +20,7 @@ import java.util.List;
 public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implements IMenuService {
     @Override
     public List<MenuVO> routes() {
-        List<Menu> allMenus = baseMapper.selectList(Wrappers.<Menu>lambdaQuery().eq(Menu::getType,"1"));
-        return MenuWrapper.build().listNodeVO(allMenus);
-    }
-
-    @Override
-    public List<MenuVO> listByParentId(long id) {
-        return MenuWrapper.build().listVO(baseMapper.listByParentId(id));
+        return MenuWrapper.build().listNodeVO(baseMapper.selectList(Wrappers.<Menu>lambdaQuery().eq(Menu::getType, "1").orderByAsc(Menu::getSort)));
     }
 
     @Override

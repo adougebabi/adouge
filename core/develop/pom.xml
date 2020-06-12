@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.adouge</groupId>
+        <artifactId>adouge-core</artifactId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <version>${adouge.project.version}</version>
+    <packaging>jar</packaging>
+
+    <artifactId>adouge-core-develop</artifactId>
+
+<dependencies>
+    <!--Mybatis-Plus-->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis-plus.version}</version>
+    </dependency>
+    <!--Velocity-->
+    <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity</artifactId>
+        <version>1.7</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adouge</groupId>
+        <artifactId>adouge-core-tool</artifactId>
+        <version>${adouge.project.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adouge</groupId>
+        <artifactId>adouge-core-tool</artifactId>
+        <version>${adouge.project.version}</version>
+    </dependency>
+</dependencies>
+</project>

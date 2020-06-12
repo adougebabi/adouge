@@ -1,8 +1,8 @@
 package com.adouge.service.system.service;
 
 import com.adouge.core.mybatis.base.BaseService;
-import com.adouge.system.entity.Menu;
-import com.adouge.system.vo.MenuVO;
+import com.adouge.service.system.entity.Menu;
+import com.adouge.service.system.vo.MenuVO;
 
 import java.util.List;
 
@@ -17,13 +17,6 @@ public interface IMenuService extends BaseService<Menu> {
      * @return 路由list
      */
     List<MenuVO> routes();
-
-    /**
-     * 根据父id获取子菜单
-     * @param id 父id
-     * @return 菜单列表
-     */
-    List<MenuVO> listByParentId(long id);
 
     /**
      * 树形列表
