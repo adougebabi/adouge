@@ -42,6 +42,10 @@ spring:
             data-id: logstash.yml
           - refresh: true
             data-id: db.yml
+          - refresh: true
+            data-id: setting.yml
+          - refresh: true
+            data-id: setting-${adouge.env}.yml
   datasource:
     # 使用阿里的Druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
@@ -93,30 +97,12 @@ management:
     web:
       exposure:
         include: '*'
-# mybatis
-mybatis-plus:
-  #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.adouge.**.entity
-  mapperLocations: com.adouge.**.mapper
-  #typeEnumsPackage: org.adouge.dashboard.entity.enums
-  global-config:
-    # 关闭MP3.0自带的banner
-    banner: false
-    db-config:
-      #主键类型  0:"数据库ID自增", 1:"不操作", 2:"用户输入ID",3:"数字型snowflake", 4:"全局唯一ID UUID", 5:"字符串型snowflake";
-      id-type: assign_id
-      #字段策略
-      insert-strategy: not_null
-      update-strategy: not_null
-      select-strategy: not_null
-      #驼峰下划线转换
-      table-underline: true
-      # 逻辑删除配置
-      logic-delete-field: is_deleted  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
-      # 逻辑删除全局值（1表示已删除，这也是Mybatis Plus的默认配置）
-      logic-delete-value: 1
-      # 逻辑未删除全局值（0表示未删除，这也是Mybatis Plus的默认配置）
-      logic-not-delete-value: 0
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
+#feign配置
+feign:
+  sentinel:
+    enabled: true
+
+#配置日志地址
+logging:
+  config: classpath:log/logback-${adouge.env}.xml
+

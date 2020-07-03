@@ -1,6 +1,8 @@
 package com.adouge.boot.controller;
 
 import com.adouge.core.tool.api.Result;
+import com.adouge.secure.AdougeUser;
+import com.adouge.secure.utils.SecureUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +27,8 @@ public class BaseController<T> {
      * 获取当前用户
      * @return user
      */
-    protected Object getUser() {
-// TODO 返回user
-        return null;
+    protected AdougeUser getUser() {
+        return SecureUtil.getUser();
     }
 
     /**
@@ -57,7 +58,6 @@ public class BaseController<T> {
      * @param data 数据
      * @param msg  消息
      * @param code 状态码
-     * @param <T>  T 泛型标记
      * @return Result
      */
     protected Result<T> data(T data, String msg, int code) {

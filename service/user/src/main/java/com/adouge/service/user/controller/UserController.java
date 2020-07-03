@@ -1,9 +1,9 @@
 package com.adouge.service.user.controller;
 
-import com.adouge.boot.controller.BaseController;
 import com.adouge.core.mybatis.support.Condition;
 import com.adouge.core.mybatis.support.Query;
 import com.adouge.core.tool.api.Result;
+import com.adouge.service.user.dto.UserDTO;
 import com.adouge.service.user.entity.User;
 import com.adouge.service.user.service.IUserService;
 import com.adouge.service.user.vo.UserVO;
@@ -14,7 +14,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -59,8 +58,8 @@ public class UserController {
     @PostMapping("/")
     @ApiOperationSupport(order = 3)
     @ApiOperation(value = "新增或修改", notes = "传入user")
-    public Result<?> submit(@Valid @RequestBody User user) {
-        return Result.status(userService.saveOrUpdate(user));
+    public Result<?> submit(@Valid @RequestBody UserDTO user) {
+        return Result.status(userService.saveUser(user));
     }
 
     /**
@@ -72,4 +71,5 @@ public class UserController {
     public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
         return Result.status(userService.removeByIds(ids));
     }
+//    /user/logout
 }

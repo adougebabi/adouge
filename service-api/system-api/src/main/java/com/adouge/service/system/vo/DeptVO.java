@@ -41,5 +41,8 @@ public class DeptVO extends Dept implements INode {
 		}
 		return this.children;
 	}
-
+	/**
+	 * 上级部门
+	 */
+	private String parentName;
 }

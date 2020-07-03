@@ -13,5 +13,5 @@ import java.util.List;
  * @since 2020-06-09
  */
 public interface RoleMapper extends BaseMapper<Role> {
-    List<RoleVO> tree();
+    List<RoleVO> tree(String tenantId,String excludeRole);
 }

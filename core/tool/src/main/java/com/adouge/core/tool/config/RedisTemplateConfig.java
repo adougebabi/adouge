@@ -27,7 +27,7 @@ import java.time.Duration;
 @EnableCaching
 @Configuration
 @AutoConfigureBefore(RedisAutoConfiguration.class)
-public class RedisTemplateConfiguration {
+public class RedisTemplateConfig {
 
     @Bean
     @ConditionalOnMissingBean(RedisSerializer.class)

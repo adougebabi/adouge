@@ -1,6 +1,6 @@
 package com.adouge.core.tool.node;
 
-import com.adouge.core.launch.constant.CommonConstant;
+import com.adouge.core.tool.constant.GlobalConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class ForestNodeManager<T extends INode> {
     public List<T> getRoot() {
         List<T> roots = new ArrayList<>();
         for (T forestNode : list) {
-            if (forestNode.getParentId().equals(CommonConstant.TOP_PARENT_ID )|| parentIds.contains(forestNode.getId())) {
+            if (forestNode.getParentId().equals(GlobalConstant.TOP_PARENT_ID )|| parentIds.contains(forestNode.getId())) {
                 roots.add(forestNode);
             }
         }

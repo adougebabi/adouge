@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adouge.service.system.mapper.TenantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="tenantResultMap" type="com.adouge.service.system.entity.Tenant">
+        <result column="id" property="id"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="version" property="version"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="tenant_name" property="tenantName"/>
+        <result column="contact_man" property="contactMan"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="contact_address" property="contactAddress"/>
+    </resultMap>
+
+
+</mapper>

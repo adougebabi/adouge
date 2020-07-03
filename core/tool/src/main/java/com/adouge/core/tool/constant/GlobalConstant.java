@@ -5,7 +5,7 @@ package com.adouge.core.tool.constant;
  * @author : Vinson
  * @date : 2020/5/15 4:55 下午
  */
-public interface Constant {
+public interface GlobalConstant {
     /**
      * 删除状态[0:正常,1:删除]
      */
@@ -28,4 +28,19 @@ public interface Constant {
      * 默认未授权消息
      */
     String DEFAULT_UNAUTHORIZED_MESSAGE = "签名认证失败";
+
+    /**
+     * 角色
+     */
+    String ADMIN = "administrator";
+    /**
+     * 顶层id
+     */
+    Long TOP_PARENT_ID=0L;
+
+    /**
+     * 顶层名称
+     */
+    String TOP_PARENT_NAME = "顶级";
+
 }

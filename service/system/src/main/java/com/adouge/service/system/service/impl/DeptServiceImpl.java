@@ -6,9 +6,7 @@ import com.adouge.service.system.entity.Dept;
 import com.adouge.service.system.mapper.DeptMapper;
 import com.adouge.service.system.service.IDeptService;
 import com.adouge.service.system.vo.DeptVO;
-import com.adouge.service.system.vo.MenuVO;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ import java.util.List;
 @Service
 public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implements IDeptService {
     @Override
-    public List<DeptVO> tree() {
-        return ForestNodeMerger.merge(baseMapper.tree());
+    public List<DeptVO> tree(String tenantId) {
+        return ForestNodeMerger.merge(baseMapper.tree(tenantId));
     }
 }

@@ -1,11 +1,13 @@
 package com.adouge.service.system.controller;
 
+import com.adouge.boot.controller.BaseController;
 import com.adouge.core.mybatis.support.Condition;
 import com.adouge.core.tool.api.Result;
-import com.adouge.service.system.service.IMenuService;
-import com.adouge.service.system.wrapper.MenuWrapper;
+import com.adouge.secure.AdougeUser;
 import com.adouge.service.system.entity.Menu;
+import com.adouge.service.system.service.IMenuService;
 import com.adouge.service.system.vo.MenuVO;
+import com.adouge.service.system.wrapper.MenuWrapper;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,17 +30,15 @@ import java.util.Map;
 @Api(tags = "菜单模块")
 @AllArgsConstructor
 @RequestMapping("menu")
-public class MenuController {
+public class MenuController extends BaseController<Menu> {
 
     private final IMenuService service;
-
-
 
     @GetMapping("/routes")
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "获取路由")
-    public Result<List<MenuVO>> routes() {
-        return Result.data(service.routes());
+    public Result<List<MenuVO>> routes(AdougeUser adougeUser ,Long topMenuId) {
+       return Result.data(service.routes(adougeUser,topMenuId));
     }
 
     @GetMapping("/detail")
@@ -47,6 +47,7 @@ public class MenuController {
     public Result<MenuVO> detail(Menu menu) {
         return Result.data(MenuWrapper.build().entityVO(service.getOne(Condition.getQueryWrapper(menu))));
     }
+
     @GetMapping("/list")
     @ApiOperationSupport(order = 3)
     @ApiOperation(value = "获取列表数据")
@@ -77,5 +78,25 @@ public class MenuController {
     @ApiOperation(value = "获取树")
     public Result<?> tree() {
         return Result.data(service.tree());
+    }
+
+    @GetMapping("/grant-tree")
+    @ApiOperationSupport(order = 8)
+    @ApiOperation(value = "权限分配树形结构", notes = "权限分配树形结构")
+    public Result<List<MenuVO>> grantTree(AdougeUser user) {
+        return Result.data(service.grantTree(user));
+    }
+
+    @GetMapping("/role-tree-keys/{roleIds}")
+    @ApiOperationSupport(order = 9)
+    @ApiOperation(value = "角色所分配的树", notes = "角色所分配的树")
+    public Result<List<String>> roleTreeKeys(@PathVariable String roleIds) {
+        return Result.data(service.roleTreeKeys(roleIds));
+    }
+    @GetMapping("/topMenu-tree-keys/{topMenuIds}")
+    @ApiOperationSupport(order = 9)
+    @ApiOperation(value = "顶部菜单所分配的树", notes = "顶部菜单所分配的树")
+    public Result<List<String>> topMenuTreeKeys(@PathVariable String topMenuIds) {
+        return Result.data(service.topMenuTreeKeys(topMenuIds));
     }
 }

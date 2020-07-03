@@ -18,5 +18,13 @@ public interface IRoleService extends BaseService<Role> {
      * 获取树列表
      * @return 树
      */
-    List<RoleVO> tree();
+    List<RoleVO> tree(String tenantId);
+
+    /**
+     * 授权菜单树
+     * @param roleIds 角色ids
+     * @param menuIds 菜单ids
+     * @return 是否成功
+     */
+    boolean grant(List<Long> roleIds, List<Long> menuIds);
 }

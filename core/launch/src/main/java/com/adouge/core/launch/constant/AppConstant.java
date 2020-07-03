@@ -25,4 +25,15 @@ public interface AppConstant {
     String OS_NAME_LINUX = "LINUX";
 
     String APPLICATION_NAME_PREFIX = "adouge-";
+
+    /**
+     * 顶层id
+     */
+    Long TOP_PARENT_ID=0L;
+
+    /**
+     * 顶层名称
+     */
+    String TOP_PARENT_NAME = "顶级";
+
 }

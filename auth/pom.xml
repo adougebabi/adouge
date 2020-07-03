@@ -19,34 +19,13 @@
     <dependencies>
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-cloud</artifactId>
-            <version>${adouge.project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-launch</artifactId>
-            <version>${adouge.project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-tool</artifactId>
-            <version>${adouge.project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-secure</artifactId>
+            <artifactId>adouge-core-boot</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.adouge</groupId>
             <artifactId>adouge-user-api</artifactId>
             <version>${adouge.project.version}</version>
-        </dependency>
-        <!-- mysql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
         </dependency>
         <!--easy-captcha-->
         <dependency>

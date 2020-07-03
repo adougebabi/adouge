@@ -1,7 +1,7 @@
 package com.adouge.core.tool.api;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.adouge.core.tool.constant.Constant;
+import com.adouge.core.tool.constant.GlobalConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -84,7 +84,7 @@ public class Result<T> implements Serializable {
      * @return R
      */
     public static <T> Result<T> data(T data) {
-        return data(data, Constant.DEFAULT_SUCCESS_MESSAGE);
+        return data(data, GlobalConstant.DEFAULT_SUCCESS_MESSAGE);
     }
 
     /**
@@ -109,7 +109,7 @@ public class Result<T> implements Serializable {
      * @return R
      */
     public static <T> Result<T> data(int code, T data, String msg) {
-        return new Result<>(code, data, data == null ? Constant.DEFAULT_NULL_MESSAGE : msg);
+        return new Result<>(code, data, data == null ? GlobalConstant.DEFAULT_NULL_MESSAGE : msg);
     }
 
     /**
@@ -200,7 +200,7 @@ public class Result<T> implements Serializable {
      * @return R
      */
     public static <T> Result<T> status(boolean flag) {
-        return flag ? success(Constant.DEFAULT_SUCCESS_MESSAGE) : fail(Constant.DEFAULT_FAILURE_MESSAGE);
+        return flag ? success(GlobalConstant.DEFAULT_SUCCESS_MESSAGE) : fail(GlobalConstant.DEFAULT_FAILURE_MESSAGE);
     }
 
 }

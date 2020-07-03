@@ -13,4 +13,8 @@ import java.util.List;
 public interface MenuMapper extends BaseMapper<Menu> {
 
     List<MenuVO> tree();
+
+    List<MenuVO> treeByRole(List<String> roleId);
+
+    List<Menu> roleMenu(List<String> roleIds,Long menuIds);
 }

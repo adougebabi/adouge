@@ -1,22 +1,24 @@
 package com.adouge.service.system.controller;
 
+import cn.hutool.core.util.StrUtil;
+import com.adouge.core.mybatis.support.Condition;
+import com.adouge.core.tool.api.Result;
+import com.adouge.secure.AdougeUser;
+import com.adouge.service.system.entity.Dept;
+import com.adouge.service.system.service.IDeptService;
+import com.adouge.service.system.vo.DeptVO;
 import com.adouge.service.system.wrapper.DeptWrapper;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
 import javax.validation.Valid;
 import java.util.List;
-import com.adouge.core.mybatis.support.Query;
-import com.adouge.core.mybatis.support.Condition;
-import com.adouge.core.tool.api.Result;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.adouge.service.system.entity.Dept;
-import com.adouge.service.system.vo.DeptVO;
-import com.adouge.service.system.service.IDeptService;
+import java.util.Map;
 
 /**
  * 部门表  控制器
@@ -48,8 +50,9 @@ public class DeptController {
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入dept")
-	public Result<IPage<DeptVO>> list(Dept dept, Query query) {
-		return Result.data(DeptWrapper.build().pageVO(deptService.page(Condition.getPage(query), Condition.getQueryWrapper(dept))));
+	public Result<List<DeptVO>> list(@ApiIgnore @RequestParam Map<String, Object> dept) {
+		return Result.data(DeptWrapper.build().listNodeVO(deptService.list(Condition.getQueryWrapper(dept, Dept.class).lambda()
+				.orderByAsc(Dept::getSort))));
 	}
 
 
@@ -75,8 +78,8 @@ public class DeptController {
 	@GetMapping("/tree")
 	@ApiOperationSupport(order = 5)
 	@ApiOperation(value = "获取树")
-	public Result<?> tree() {
-		return Result.data(deptService.tree());
+	public Result<?> tree(String tenantId, AdougeUser user) {
+		return Result.data(deptService.tree(StrUtil.emptyToDefault(tenantId,user.getTenantId())));
 	}
 
 }

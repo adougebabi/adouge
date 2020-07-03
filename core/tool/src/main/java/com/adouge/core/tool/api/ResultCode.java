@@ -34,7 +34,12 @@ public enum ResultCode implements IResultCode {
     /**
      * 504 网关未能及时响应
      */
-    GATEWAY_TIMEOUT(HttpServletResponse.SC_GATEWAY_TIMEOUT, "网关服务请求超时");
+    GATEWAY_TIMEOUT(HttpServletResponse.SC_GATEWAY_TIMEOUT, "网关服务请求超时"),
+    /**
+     *  500 服务器内部异常
+     */
+    INTERNAL_SERVER_ERROR(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "服务器内部异常");
+
 
 
     final int code;

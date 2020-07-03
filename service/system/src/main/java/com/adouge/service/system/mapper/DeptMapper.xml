@@ -28,6 +28,9 @@
     </resultMap>
     <select id="tree" resultMap="treeNodeResultMap">
         select id, parent_id, dept_name as title, id as v, id as k from adouge_dept where is_deleted = 0
+        <if test="param1!=null">
+            and tenant_id = #{param1}
+        </if>
     </select>
 
 </mapper>

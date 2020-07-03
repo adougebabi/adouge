@@ -20,5 +20,5 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "权限列表")
     private List<String> permissions;
     @ApiModelProperty(value = "角色列表")
-    private List<String> roles;
+    private List<Long> roles;
 }

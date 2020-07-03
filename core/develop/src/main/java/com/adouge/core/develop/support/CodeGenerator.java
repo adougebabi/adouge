@@ -159,7 +159,7 @@ public class CodeGenerator {
             strategy.setSuperServiceImplClass("com.baomidou.mybatisplus.extension.service.impl.ServiceImpl");
         }
         // 自定义 controller 父类
-//        strategy.setSuperControllerClass("org.springadouge.core.boot.ctrl.BladeController");
+        strategy.setSuperControllerClass("com.adouge.boot.controller.BaseController");
         strategy.setEntityBuilderModel(false);
         strategy.setEntityLombokModel(true);
         strategy.setControllerMappingHyphenStyle(true);

@@ -8,6 +8,7 @@ import com.adouge.auth.granter.TokenParameter;
 import com.adouge.auth.utils.TokenUtils;
 import com.adouge.core.tool.api.Result;
 import com.adouge.core.tool.utils.RedisUtil;
+import com.adouge.secure.AdougeUser;
 import com.adouge.service.user.entity.UserInfo;
 import com.wf.captcha.GifCaptcha;
 import io.swagger.annotations.Api;
@@ -64,5 +65,15 @@ public class AuthController {
         redisUtil.set(str, code, 1000 * 30);
         // 将key和base64返回给前端
         gifCaptcha.out(response.getOutputStream());
+    }
+
+    @GetMapping("logout")
+    public Result<?> logout(){
+        return Result.success("");
+    }
+    @PostMapping("refreshToken")
+    public Result<?> refreshToken(AdougeUser user){
+//        ITokenGranter granter = TokenBuilder.getGranter(grantType);
+        return Result.success("");
     }
 }

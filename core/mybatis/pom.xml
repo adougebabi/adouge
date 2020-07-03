@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.adouge</groupId>
-            <artifactId>adouge-core-tool</artifactId>
+            <artifactId>adouge-core-secure</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>

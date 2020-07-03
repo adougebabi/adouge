@@ -39,4 +39,8 @@ public class MenuVO extends Menu implements INode {
         }
         return this.children;
     }
+    /**
+     * 上级菜单
+     */
+    private String parentName;
 }

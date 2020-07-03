@@ -1,5 +1,8 @@
 package com.adouge.core.mybatis.handler;
 
+
+import com.adouge.secure.AdougeUser;
+import com.adouge.secure.utils.SecureUtil;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
@@ -20,23 +23,25 @@ public class AdougeMetaObjectHandler implements MetaObjectHandler {
         if (log.isDebugEnabled()) {
             log.debug("start insert fill ....");
         }
-//        TODO
+        AdougeUser user = SecureUtil.getUser();
+        assert user != null;
         this.fillStrategy(metaObject, "createdTime",  LocalDateTime.now());
-        this.fillStrategy(metaObject, "createdBy", 1L);
+        this.fillStrategy(metaObject, "createdBy", user.getUserId());
         this.fillStrategy(metaObject, "status",  0);
         this.fillStrategy(metaObject, "isDeleted",  0);
         this.fillStrategy(metaObject, "version",  1L);
         this.fillStrategy(metaObject, "updatedTime",  LocalDateTime.now());
-        this.fillStrategy(metaObject, "updatedBy", 1L);
+        this.fillStrategy(metaObject, "updatedBy", user.getUserId());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        //        TODO
         if (log.isDebugEnabled()) {
             log.debug("start update fill ....");
         }
+        AdougeUser user = SecureUtil.getUser();
+        assert user != null;
         this.fillStrategy(metaObject, "updatedTime", LocalDateTime.now());
-        this.fillStrategy(metaObject, "updatedBy", 1L);
+        this.fillStrategy(metaObject, "updatedBy", user.getUserId());
     }
 }

@@ -2,9 +2,8 @@ package com.adouge.service.system.mapper;
 
 import com.adouge.service.system.entity.Dept;
 import com.adouge.service.system.vo.DeptVO;
-import com.adouge.service.system.vo.MenuVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import java.util.List;
 
 /**
@@ -14,5 +13,5 @@ import java.util.List;
  * @since 2020-06-11
  */
 public interface DeptMapper extends BaseMapper<Dept> {
-    List<DeptVO> tree();
+    List<DeptVO> tree(String tenantId);
 }

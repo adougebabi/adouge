@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adouge.service.user.mapper.UserRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="userRoleResultMap" type="com.adouge.service.user.entity.UserRole">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="role_id" property="roleId"/>
+    </resultMap>
+
+    <select id="listRoleId" resultType="java.lang.Long">
+        select role_id from adouge_user_role where 1=1
+        <if test="param1!=null">
+            and user_id = #{param1}
+        </if>
+    </select>
+
+
+</mapper>

@@ -24,10 +24,10 @@ public class TokenUtils {
                 .set(TokenConstant.TOKEN_TYPE, TokenConstant.ACCESS_TOKEN)
                 .set(TokenConstant.TENANT_ID, user.getTenantId())
                 .set(TokenConstant.USER_ID, user.getId())
-                .set(TokenConstant.ROLE_ID, ArrayUtil.toString(userInfo.getRoles()))
+                .set(TokenConstant.ROLE_ID, userInfo.getRoles())
                 .set(TokenConstant.ACCOUNT, user.getAccount())
                 .set(TokenConstant.USER_NAME, user.getUsername())
-                .set(TokenConstant.ROLE_NAME, ArrayUtil.toString(userInfo.getRoles()));
+                .set(TokenConstant.ROLE_NAME, userInfo.getRoles());
         TokenInfo jwtToken = SecureUtil.createJwtToken(param, "audience", "issuer", TokenConstant.ACCESS_TOKEN);
 
         return AuthInfo.builder()

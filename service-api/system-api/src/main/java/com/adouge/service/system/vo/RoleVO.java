@@ -43,4 +43,8 @@ public class RoleVO extends Role implements INode {
 		}
 		return this.children;
 	}
+	/**
+	 * 上级角色
+	 */
+	private String parentName;
 }

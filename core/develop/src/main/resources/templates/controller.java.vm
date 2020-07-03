@@ -40,7 +40,7 @@ import $!{superControllerClassPackage};
 @RequestMapping("#if($!{package.ModuleName})/$!{package.ModuleName}#end/$!{cfg.entityKey}")
 @Api(value = "$!{table.comment}", tags = "$!{table.comment}接口")
 #if($!{superControllerClass})
-public class $!{table.controllerName} extends $!{superControllerClass} {
+public class $!{table.controllerName} extends $!{superControllerClass}<$!{table.serviceName}> {
 #else
 public class $!{table.controllerName} {
 #end
@@ -48,9 +48,7 @@ public class $!{table.controllerName} {
 	private final $!{table.serviceName} $!{table.entityPath}Service;
 
 #if($!{cfg.hasWrapper})
-	/**
-	 * 详情
-	 */
+
 	@GetMapping("/detail")
 	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入$!{table.entityPath}")
@@ -58,9 +56,6 @@ public class $!{table.controllerName} {
 		return Result.data($!{entity}Wrapper.build().entityVO($!{table.entityPath}Service.getOne(Condition.getQueryWrapper($!{table.entityPath}))));
 	}
 
-	/**
-	 * 分页 $!{table.comment}
-	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
@@ -69,9 +64,6 @@ public class $!{table.controllerName} {
 	}
 
 #else
-	/**
-	 * 详情
-	 */
 	@GetMapping("/detail")
 	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入$!{table.entityPath}")
@@ -79,9 +71,6 @@ public class $!{table.controllerName} {
 		return Result.data($!{table.entityPath}Service.getOne(Condition.getQueryWrapper($!{table.entityPath})));
 	}
 
-	/**
-	 * 分页 $!{table.comment}
-	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
@@ -90,9 +79,7 @@ public class $!{table.controllerName} {
 	}
 #end
 
-	/**
-	 * 新增或修改 $!{table.comment}
-	 */
+
 	@PostMapping("/")
 	@ApiOperationSupport(order = 3)
 	@ApiOperation(value = "新增或修改", notes = "传入$!{table.entityPath}")
@@ -100,9 +87,6 @@ public class $!{table.controllerName} {
 		return Result.status($!{table.entityPath}Service.saveOrUpdate($!{table.entityPath}));
 	}
 
-	/**
-	 * 删除 $!{table.comment}
-	 */
 	@DeleteMapping("/{ids}")
 	@ApiOperationSupport(order = 4)
 	@ApiOperation(value = "逻辑删除", notes = "传入ids")

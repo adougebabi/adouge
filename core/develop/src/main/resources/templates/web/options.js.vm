@@ -6,7 +6,7 @@ export default () => {
     lazy: true,
     indexLabel: '序号',
     align: 'center',
-    headerAlign: 'left',
+    headerAlign: 'center',
     border: true,
     searchMenuSpan: 8,
     stripe: true,

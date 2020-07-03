@@ -1,7 +1,10 @@
 package com.adouge.service.system.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.adouge.core.mybatis.support.Condition;
 import com.adouge.core.tool.api.Result;
+import com.adouge.secure.AdougeUser;
+import com.adouge.service.system.dto.RoleMenuDTO;
 import com.adouge.service.system.entity.Role;
 import com.adouge.service.system.service.IRoleService;
 import com.adouge.service.system.vo.RoleVO;
@@ -30,54 +33,60 @@ import java.util.Map;
 @Api(value = "角色表 ", tags = "角色表 接口")
 public class RoleController {
 
-	private final IRoleService roleService;
+    private final IRoleService roleService;
 
-	/**
-	 * 详情
-	 */
-	@GetMapping("/detail")
-	@ApiOperationSupport(order = 1)
-	@ApiOperation(value = "详情", notes = "传入role")
-	public Result<RoleVO> detail(Role role) {
-		return Result.data(RoleWrapper.build().entityVO(roleService.getOne(Condition.getQueryWrapper(role))));
-	}
+    /**
+     * 详情
+     */
+    @GetMapping("/detail")
+    @ApiOperationSupport(order = 1)
+    @ApiOperation(value = "详情", notes = "传入role")
+    public Result<RoleVO> detail(Role role) {
+        return Result.data(RoleWrapper.build().entityVO(roleService.getOne(Condition.getQueryWrapper(role))));
+    }
 
-	/**
-	 * 分页 角色表
-	 */
-	@GetMapping("/list")
-	@ApiOperationSupport(order = 2)
-	@ApiOperation(value = "分页", notes = "传入role")
-	public Result<List<RoleVO>> list(@ApiIgnore @RequestParam Map<String, Object> role) {
-		return Result.data(RoleWrapper.build().listNodeVO(roleService.list(Condition.getQueryWrapper(role, Role.class).lambda()
-				.orderByAsc(Role::getSort))));
-	}
+    /**
+     * 分页 角色表
+     */
+    @GetMapping("/list")
+    @ApiOperationSupport(order = 2)
+    @ApiOperation(value = "分页", notes = "传入role")
+    public Result<List<RoleVO>> list(@ApiIgnore @RequestParam Map<String, Object> role) {
+        return Result.data(RoleWrapper.build().listNodeVO(roleService.list(Condition.getQueryWrapper(role, Role.class).lambda()
+                .orderByAsc(Role::getSort))));
+    }
 
 
-	/**
-	 * 新增或修改 角色表
-	 */
-	@PostMapping("/")
-	@ApiOperationSupport(order = 3)
-	@ApiOperation(value = "新增或修改", notes = "传入role")
-	public Result<?> submit(@Valid @RequestBody Role role) {
-		return Result.status(roleService.saveOrUpdate(role));
-	}
+    /**
+     * 新增或修改 角色表
+     */
+    @PostMapping("/")
+    @ApiOperationSupport(order = 3)
+    @ApiOperation(value = "新增或修改", notes = "传入role")
+    public Result<?> submit(@Valid @RequestBody Role role) {
+        return Result.status(roleService.saveOrUpdate(role));
+    }
 
-	/**
-	 * 删除 角色表
-	 */
-	@DeleteMapping("/{ids}")
-	@ApiOperationSupport(order = 4)
-	@ApiOperation(value = "逻辑删除", notes = "传入ids")
-	public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
-		return Result.status(roleService.removeByIds(ids));
-	}
-	@GetMapping("/tree")
-	@ApiOperationSupport(order = 5)
-	@ApiOperation(value = "获取树")
-	public Result<?> tree() {
-		return Result.data(roleService.tree());
-	}
+    /**
+     * 删除 角色表
+     */
+    @DeleteMapping("/{ids}")
+    @ApiOperationSupport(order = 4)
+    @ApiOperation(value = "逻辑删除", notes = "传入ids")
+    public Result<?> remove(@ApiParam(value = "主键集合", required = true) @PathVariable List<String> ids) {
+        return Result.status(roleService.removeByIds(ids));
+    }
+    @GetMapping("/tree")
+    @ApiOperationSupport(order = 5)
+    @ApiOperation(value = "树形结构", notes = "树形结构")
+    public Result<List<RoleVO>> tree(String tenantId, AdougeUser user) {
+        return Result.data(roleService.tree(StrUtil.emptyToDefault(tenantId,user.getTenantId())));
+    }
+    @PostMapping("/grant")
+    @ApiOperationSupport(order = 6)
+    @ApiOperation(value = "权限设置", notes = "传入roleId集合以及menuId集合")
+    public Result<?> grant(@RequestBody RoleMenuDTO dto) {
+        return Result.status(roleService.grant(dto.getRoleIds(), dto.getMenuIds()));
+    }
 
 }
