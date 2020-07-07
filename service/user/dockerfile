@@ -1,0 +1,14 @@
+FROM anapsix/alpine-java:8_server-jre_unlimited
+
+MAINTAINER 646911949@qq.com
+
+RUN mkdir -p /adouge
+
+WORKDIR /adouge
+
+EXPOSE 8101
+
+ADD adouge-service-user.jar app.jar
+
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urr
+andom", "-jar", "app.jar"]

@@ -25,6 +25,9 @@
         <spring.cloud.version>Hoxton.SR3</spring.cloud.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
 
+        <docker.plugin.version>1.2.2</docker.plugin.version>
+        <docker.registry.url>129.211.7.107</docker.registry.url>
+        <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
     </properties>
 
     <modules>
