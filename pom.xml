@@ -28,6 +28,7 @@
         <docker.plugin.version>1.2.2</docker.plugin.version>
         <docker.registry.url>129.211.7.107</docker.registry.url>
         <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
+        <docker.skip>true</docker.skip>
     </properties>
 
     <modules>
@@ -130,6 +131,27 @@
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <skipDocker>${docker.skip}</skipDocker>
+                    <imageName>${docker.registry.url}/adouge/${project.artifactId}:${project.version}</imageName>
+                    <dockerDirectory>${project.basedir}</dockerDirectory>
+                    <dockerHost>${docker.registry.host}</dockerHost>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <registryUrl>${docker.registry.url}</registryUrl>
+                    <serverId>${docker.registry.url}</serverId>
+                    <pushImage>true</pushImage>
                 </configuration>
             </plugin>
         </plugins>
