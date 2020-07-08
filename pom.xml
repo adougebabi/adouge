@@ -26,9 +26,10 @@
         <spring.platform.version>Cairo-SR8</spring.platform.version>
 
         <dockerfile.skip>true</dockerfile.skip>
-        <docker.registry.url>129.211.7.107</docker.registry.url>
+        <docker.registry.host>129.211.7.107</docker.registry.host>
         <docker.plugin.version>1.4.13</docker.plugin.version>
-        <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
+        <docker.registry.url>http://${docker.registry.host}:2375</docker.registry.url>
+        <docker.image.prefix>adouge</docker.image.prefix>
     </properties>
 
     <modules>
@@ -137,21 +138,23 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>${docker.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-<!--                    <skip>${docker.skip}</skip>-->
-                    <imageName>${docker.registry.url}/adouge/${project.artifactId}:${project.version}</imageName>
-                    <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <dockerHost>${docker.registry.host}</dockerHost>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                    <registryUrl>${docker.registry.url}</registryUrl>
-                    <serverId>${docker.registry.url}</serverId>
-                    <pushImage>true</pushImage>
+                    <repository>${docker.registry.host}/${docker.image.prefix}/${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <dockerfile>dockerfile</dockerfile>
+                    <contextDirectory>${project.basedir}</contextDirectory>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
                 </configuration>
             </plugin>
         </plugins>

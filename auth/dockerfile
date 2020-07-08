@@ -7,8 +7,8 @@ RUN mkdir -p /adouge
 WORKDIR /adouge
 
 EXPOSE 8101
-
-ADD adouge-auth.jar app.jar
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
 
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urr
 andom", "-jar", "app.jar"]
