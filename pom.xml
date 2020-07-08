@@ -25,10 +25,10 @@
         <spring.cloud.version>Hoxton.SR3</spring.cloud.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
 
-        <docker.plugin.version>1.2.2</docker.plugin.version>
+        <dockerfile.skip>true</dockerfile.skip>
         <docker.registry.url>129.211.7.107</docker.registry.url>
+        <docker.plugin.version>1.4.13</docker.plugin.version>
         <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
-        <docker.skip>true</docker.skip>
     </properties>
 
     <modules>
@@ -135,10 +135,10 @@
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>${docker.plugin.version}</version>
                 <configuration>
-                    <skipDocker>${docker.skip}</skipDocker>
+<!--                    <skip>${docker.skip}</skip>-->
                     <imageName>${docker.registry.url}/adouge/${project.artifactId}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}</dockerDirectory>
                     <dockerHost>${docker.registry.host}</dockerHost>
