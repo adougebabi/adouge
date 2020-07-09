@@ -1,14 +1,12 @@
+FROM anapsix/alpine-java:8_server-jre_unlimited as builder
+WORKDIR application
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} application.jar
+RUN java -Djarmode=layertools -jar application.jar extract
 FROM anapsix/alpine-java:8_server-jre_unlimited
-
-MAINTAINER 646911949@qq.com
-
-RUN mkdir -p /adouge
-
-WORKDIR /adouge
-
-EXPOSE 8101
-
-ADD adouge-ops-develop.jar app.jar
-
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urr
-andom", "-jar", "app.jar"]
+WORKDIR application
+COPY --from=builder application/dependencies/ ./
+COPY --from=builder application/spring-boot-loader/ ./
+COPY --from=builder application/snapshot-dependencies/ ./
+COPY --from=builder application/application/ ./
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
