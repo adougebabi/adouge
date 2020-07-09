@@ -2,6 +2,7 @@ package com.adouge.core.mybatis.base;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ public interface BaseService<T> extends IService<T> {
      * @param ids ids
      * @return 是否成功
      */
-    boolean deleteLogic(List<Long> ids);
+    boolean deleteLogic(@NotEmpty List<Long> ids);
 }

@@ -26,7 +26,7 @@
         <spring.platform.version>Cairo-SR8</spring.platform.version>
 
         <dockerfile.skip>true</dockerfile.skip>
-        <docker.registry.host>129.211.7.107</docker.registry.host>
+        <docker.registry.host>127.0.0.1</docker.registry.host>
         <docker.plugin.version>1.4.13</docker.plugin.version>
         <docker.registry.url>${docker.registry.host}</docker.registry.url>
         <docker.image.prefix>adouge</docker.image.prefix>
