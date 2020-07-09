@@ -12,6 +12,9 @@
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
     <packaging>jar</packaging>
+    <properties>
+        <dockerfile.skip>false</dockerfile.skip>
+    </properties>
 
     <dependencies>
         <!--<dependency>

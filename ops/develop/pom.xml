@@ -12,6 +12,9 @@
     <name>${project.artifactId}</name>
     <version>${adouge.project.version}</version>
     <artifactId>adouge-ops-develop</artifactId>
+    <properties>
+        <dockerfile.skip>false</dockerfile.skip>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.adouge</groupId>
