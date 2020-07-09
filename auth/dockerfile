@@ -5,8 +5,8 @@ COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 FROM anapsix/alpine-java:8_server-jre_unlimited
 WORKDIR application
-COPY --from=builder application/dependencies/ ./  \
- --from=builder application/spring-boot-loader/ ./  \
- --from=builder application/snapshot-dependencies/ ./  \
- --from=builder application/application/ ./
+COPY --from=builder application/dependencies/ ./
+COPY --from=builder application/spring-boot-loader/ ./
+COPY --from=builder application/snapshot-dependencies/ ./
+COPY --from=builder application/application/ ./
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
