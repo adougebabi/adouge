@@ -1,20 +1,19 @@
 server:
   port: 8001
+#spring配置
 spring:
   application:
     name: adouge-ops-admin
-  security:
-    user:
-      name: adouge
-      password: 123456
   cloud:
     nacos:
       discovery:
         server-addr: 129.211.7.107:8848 #配置Nacos地址
-        metadata:
-          user:
-            name: adouge
-            password: 123456
+      config:
+        server-addr: 129.211.7.107:8848 #配置Nacos地址
+        file-extension: yaml
+        shared-configs:
+          - refresh: true
+            data-id: admin-setting-${adouge.env}.yml
 #开放所有端口
 management:
   endpoints:

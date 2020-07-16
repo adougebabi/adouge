@@ -10,6 +10,11 @@
 service-api 放的是服务间调用的接口以及实体
 service 放数据交互接口
 
+##ops
+adouge-ops-admin:8001
+
+adouge-ops-develop:8002
+
 
 #### 安装教程
 
