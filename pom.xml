@@ -133,7 +133,7 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            <plugin>
+          <!--  <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>${docker.plugin.version}</version>
@@ -148,7 +148,7 @@
                 </executions>
                 <configuration>
                     <repository>${docker.registry.host}/${docker.image.prefix}/${project.artifactId}</repository>
-<!--                    <tag>${project.version}</tag>-->
+&lt;!&ndash;                    <tag>${project.version}</tag>&ndash;&gt;
                     <tag>latest</tag>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <dockerfile>dockerfile</dockerfile>
@@ -157,7 +157,7 @@
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
