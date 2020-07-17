@@ -1,7 +1,6 @@
 import cn.hutool.core.codec.Base64;
-import com.google.common.base.Utf8;
 import lombok.SneakyThrows;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 
