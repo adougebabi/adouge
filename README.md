@@ -15,6 +15,16 @@ adouge-ops-admin:8001
 
 adouge-ops-develop:8002
 
+##auth
+adouge-auth:8101
+
+##gateway
+adouge-gateway:8201
+
+##service
+adouge-service-system:8311
+
+adouge-service-user:8301
 
 #### 安装教程
 

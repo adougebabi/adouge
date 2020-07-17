@@ -1,0 +1,57 @@
+version: '3'
+services:
+  adouge-admin:
+    image: adouge.sb/adouge/adouge-ops-admin:latest
+    ports:
+      - 8001:8001
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+  adouge-develop:
+    image: adouge.sb/adouge/adouge-ops-develop:latest
+    ports:
+      - 8002:8002
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+  adouge-gateway:
+    image: adouge.sb/adouge/adouge-gateway:latest
+    ports:
+      - 8201:8201
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+  adouge-service-system:
+    image: adouge.sb/adouge/adouge-service-system:latest
+    ports:
+      - 8311:8311
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+  adouge-service-user:
+    image: adouge.sb/adouge/adouge-service-user:latest
+    ports:
+      - 8301:8301
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+  adouge-auth:
+    image: adouge.sb/adouge/adouge-auth:latest
+    ports:
+      - 8101:8101
+    privileged: true
+#    restart: always
+    networks:
+      - cloud
+
+networks:
+  cloud:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16

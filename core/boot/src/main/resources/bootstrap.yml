@@ -11,10 +11,6 @@ server:
       force: true
 #spring配置
 spring:
-  redis:
-      host: 129.211.7.107
-      port: 6379
-      password: adougeniubi
   cache:
     ehcache:
       config: classpath:config/ehcache.xml
@@ -83,10 +79,6 @@ spring:
         #deny: 192.168.1.73
         #  禁用HTML页面上的“Reset All”功能
         reset-enable: false
-        # 登录名
-        login-username: adouge
-        # 登录密码
-        login-password: 123456
 #开放所有端口
 management:
   endpoints:

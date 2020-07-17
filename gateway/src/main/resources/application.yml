@@ -4,9 +4,9 @@ spring:
 #  main:
 #    allow-bean-definition-overriding: true
   redis:
-    host: 129.211.7.107
+    #host: 129.211.7.107
     port: 6379
-    password: adougeniubi
+    #password: adougeniubi
   application:
     name: adouge-gateway
   cloud:
