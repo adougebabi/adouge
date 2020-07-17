@@ -26,7 +26,7 @@
         <spring.boot.version>2.4.0-M1</spring.boot.version>
         <spring.cloud.version>Hoxton.SR6</spring.cloud.version>
         <spring.boot.admin.version>2.2.3</spring.boot.admin.version>
-
+        <spring-boot.build-image.builder>registry.cn-hangzhou.aliyuncs.com/paketo-buildpacks/builder:base-platform-api-0.3</spring-boot.build-image.builder>
         <dockerfile.skip>true</dockerfile.skip>
         <docker.registry.host>129.211.7.107</docker.registry.host>
         <docker.plugin.version>1.4.13</docker.plugin.version>
