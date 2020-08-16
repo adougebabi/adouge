@@ -15,6 +15,7 @@
     <modules>
         <module>system</module>
         <module>user</module>
+        <module>scope</module>
     </modules>
     <dependencies>
         <dependency>
@@ -25,6 +26,11 @@
         <dependency>
             <groupId>com.adouge</groupId>
             <artifactId>adouge-core-swagger</artifactId>
+            <version>${adouge.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.adouge</groupId>
+            <artifactId>adouge-core-dataScope</artifactId>
             <version>${adouge.project.version}</version>
         </dependency>
     </dependencies>

@@ -1,8 +1,6 @@
 package com.adouge.core.tool.utils;
 
 import cn.hutool.core.util.StrUtil;
-import io.micrometer.core.instrument.util.StringUtils;
-import io.netty.util.internal.StringUtil;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
@@ -27,6 +25,10 @@ public class WebUtil {
     public static HttpServletResponse getResponse() {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         return (requestAttributes == null) ? null : ((ServletRequestAttributes) requestAttributes).getResponse();
+    }
+
+    public static void setStatus(int code){
+        getResponse().setStatus(code);
     }
 
     @Nullable

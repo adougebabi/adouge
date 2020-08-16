@@ -19,4 +19,9 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
     public List<Long> listRoleId(Long userId) {
         return baseMapper.listRoleId(userId);
     }
+
+    @Override
+    public List<String> listRoleName(Long userId) {
+        return baseMapper.listRoleName(userId);
+    }
 }

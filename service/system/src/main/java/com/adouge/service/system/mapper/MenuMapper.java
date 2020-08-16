@@ -14,7 +14,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     List<MenuVO> tree();
 
-    List<MenuVO> treeByRole(List<String> roleId);
+    List<MenuVO> treeByRole(List<Long> roleId);
 
-    List<Menu> roleMenu(List<String> roleIds,Long menuIds);
+    List<Menu> roleMenu(List<Long> roleIds,Long menuIds);
 }

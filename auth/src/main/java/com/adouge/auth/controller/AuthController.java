@@ -7,7 +7,9 @@ import com.adouge.auth.granter.TokenBuilder;
 import com.adouge.auth.granter.TokenParameter;
 import com.adouge.auth.utils.TokenUtils;
 import com.adouge.core.tool.api.Result;
+import com.adouge.core.tool.api.ResultCode;
 import com.adouge.core.tool.utils.RedisUtil;
+import com.adouge.core.tool.utils.WebUtil;
 import com.adouge.secure.AdougeUser;
 import com.adouge.service.user.entity.UserInfo;
 import com.wf.captcha.GifCaptcha;
@@ -50,6 +52,7 @@ public class AuthController {
         assert granter != null;
         UserInfo userInfo = granter.grant(tokenParameter);
         if (ObjectUtil.isEmpty(userInfo) || ObjectUtil.isEmpty(userInfo.getUser())) {
+            WebUtil.setStatus(ResultCode.FAILURE.getCode());
             return Result.fail(AuthConstant.USER_NOT_FOUND);
         }
         return Result.data(TokenUtils.createAuthInfo(userInfo));

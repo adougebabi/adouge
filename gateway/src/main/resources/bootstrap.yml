@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 129.211.7.107:8848 #配置Nacos地址
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
+        shared-configs:
+          - refresh: true
+            data-id: setting.yml
+          - refresh: true
+            data-id: setting-${zm.env}.yml
+    inetutils:
+      ignored-interfaces: eth.*
+#开放所有端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#配置日志地址
+logging:
+  config: classpath:log/logback-${adouge.env}.xml
+

@@ -27,11 +27,9 @@ spring:
       discovery:
         server-addr: 129.211.7.107:8848 #配置Nacos地址
       config:
-        server-addr: 129.211.7.107:8848 #配置Nacos地址
+        server-addr: ${spring.cloud.nacos.discovery.server-addr} #配置Nacos地址
         file-extension: yaml
         shared-configs:
-          - refresh: true
-            data-id: logstash.yml
           - refresh: true
             data-id: db.yml
           - refresh: true
@@ -40,7 +38,7 @@ spring:
             data-id: setting-${adouge.env}.yml
     inetutils:
       ignored-interfaces: eth.*
-      preferred-networks: ${discovery.server-ip}
+#      preferred-networks: ${discovery.server-ip}
   datasource:
     # 使用阿里的Druid连接池
     type: com.alibaba.druid.pool.DruidDataSource

@@ -15,6 +15,7 @@
         <result column="code" property="code"/>
         <result column="dict_key" property="dictKey"/>
         <result column="dict_value" property="dictValue"/>
+        <result column="created_dept" property="createdDept"/>
         <result column="sort" property="sort"/>
         <result column="remark" property="remark"/>
         <result column="parent_id" property="parentId"/>

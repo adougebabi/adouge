@@ -1,9 +1,9 @@
-FROM frolvlad/alpine-java:jre8-slim AS builder
+FROM anapsix/alpine-java:8_server-jre_unlimited as builder
 WORKDIR application
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
-FROM frolvlad/alpine-java:jre8-slim
+FROM anapsix/alpine-java:8_server-jre_unlimited
 WORKDIR application
 COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./

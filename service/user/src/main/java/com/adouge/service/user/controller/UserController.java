@@ -38,7 +38,9 @@ public class UserController {
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "详情", notes = "传入user")
     public Result<UserVO> detail(User user) {
-        return Result.data(UserWrapper.build().entityVO(userService.getOne(Condition.getQueryWrapper(user))));
+        UserVO userVO = UserWrapper.build().entityVO(userService.getOne(Condition.getQueryWrapper(user)));
+        userVO.setPassword("");
+        return Result.data(userVO);
     }
 
     /**
@@ -48,7 +50,11 @@ public class UserController {
     @ApiOperationSupport(order = 2)
     @ApiOperation(value = "分页", notes = "传入user")
     public Result<IPage<UserVO>> list(User user, Query query) {
-        return Result.data(UserWrapper.build().pageVO(userService.page(Condition.getPage(query), Condition.getQueryWrapper(user))));
+        IPage<UserVO> page = UserWrapper.build().pageVO(userService.page(Condition.getPage(query), Condition.getQueryWrapper(user)));
+        for (UserVO record : page.getRecords()) {
+            record.setPassword("");
+        }
+        return Result.data(page);
     }
 
 

@@ -12,6 +12,7 @@
         <result column="updated_time" property="updatedTime"/>
         <result column="status" property="status"/>
         <result column="is_deleted" property="isDeleted"/>
+        <result column="created_dept" property="createdDept"/>
         <result column="client_id" property="clientId"/>
         <result column="client_secret" property="clientSecret"/>
         <result column="refresh_token_time" property="refreshTokenTime"/>

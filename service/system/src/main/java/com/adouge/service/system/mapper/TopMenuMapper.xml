@@ -17,6 +17,7 @@
         <result column="path" property="path"/>
         <result column="icon" property="icon"/>
         <result column="sort" property="sort"/>
+        <result column="created_dept" property="createdDept"/>
         <result column="remark" property="remark"/>
     </resultMap>
 

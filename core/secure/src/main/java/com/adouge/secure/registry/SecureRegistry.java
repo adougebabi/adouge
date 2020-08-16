@@ -1,5 +1,6 @@
 package com.adouge.secure.registry;
 
+import com.adouge.secure.props.AuthSecure;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,10 +14,11 @@ import java.util.List;
 @Data
 public class SecureRegistry {
     private boolean enabled = true;
-
+    private boolean authEnabled = true;
+    private boolean clientEnabled = true;
     private final List<String> defaultExcludePatterns = new ArrayList<>();
-
     private final List<String> excludePatterns = new ArrayList<>();
+    private final List<AuthSecure> authSecures = new ArrayList<>();
 
     public SecureRegistry() {
         this.defaultExcludePatterns.add("/actuator/health/**");
@@ -26,9 +28,8 @@ public class SecureRegistry {
         this.defaultExcludePatterns.add("/token/**");
         this.defaultExcludePatterns.add("/code/**");
         this.defaultExcludePatterns.add("/log/**");
+        this.defaultExcludePatterns.add("/user/userInfoById");
         this.defaultExcludePatterns.add("/user/userInfo");
-        this.defaultExcludePatterns.add("/user/user-info-by-id");
-        this.defaultExcludePatterns.add("/menu/auth-routes");
         this.defaultExcludePatterns.add("/error/**");
         this.defaultExcludePatterns.add("/assets/**");
     }
@@ -45,6 +46,14 @@ public class SecureRegistry {
      */
     public SecureRegistry excludePathPatterns(List<String> patterns) {
         this.excludePatterns.addAll(patterns);
+        return this;
+    }
+
+    /**
+     * 批量添加 授权规则
+     */
+    public SecureRegistry addAuthPatterns(List<AuthSecure> authSecures) {
+        this.authSecures.addAll(authSecures);
         return this;
     }
 }

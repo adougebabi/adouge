@@ -17,4 +17,11 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
      * @return 角色id
      */
     List<Long> listRoleId(Long userId);
+
+    /**
+     * 获取所有角色Name
+     * @param userId 用户id
+     * @return 角色Name
+     */
+    List<String> listRoleName(Long userId);
 }

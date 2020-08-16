@@ -51,13 +51,13 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
 
     @Override
     public List<String> roleTreeKeys(String roleIds) {
-        List<RoleMenu> roleMenus = roleMenuService.list(Wrappers.<RoleMenu>query().lambda().in(RoleMenu::getRoleId, CollUtil.newArrayList(roleIds.split(StringConstant.COMMA))));
+        List<RoleMenu> roleMenus = roleMenuService.list(Wrappers.<RoleMenu>lambdaQuery().in(RoleMenu::getRoleId, CollUtil.newArrayList(roleIds.split(StringConstant.COMMA))));
         return roleMenus.stream().map(roleMenu -> StrUtil.toString(roleMenu.getMenuId())).collect(Collectors.toList());
     }
 
     @Override
     public List<String> topMenuTreeKeys(String topMenuIds) {
-        List<TopMenuMenu> topMenuMenus = topMenuMenuService.list(Wrappers.<TopMenuMenu>query().lambda().in(TopMenuMenu::getTopMenuId, CollUtil.newArrayList(topMenuIds.split(StringConstant.COMMA))));
+        List<TopMenuMenu> topMenuMenus = topMenuMenuService.list(Wrappers.<TopMenuMenu>lambdaQuery().in(TopMenuMenu::getTopMenuId, CollUtil.newArrayList(topMenuIds.split(StringConstant.COMMA))));
         return topMenuMenus.stream().map(topMenus -> StrUtil.toString(topMenus.getMenuId())).collect(Collectors.toList());
     }
 }

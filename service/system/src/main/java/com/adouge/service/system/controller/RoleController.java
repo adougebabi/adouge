@@ -82,8 +82,9 @@ public class RoleController {
     public Result<List<RoleVO>> tree(String tenantId, AdougeUser user) {
         return Result.data(roleService.tree(StrUtil.emptyToDefault(tenantId,user.getTenantId())));
     }
+
     @PostMapping("/grant")
-    @ApiOperationSupport(order = 6)
+    @ApiOperationSupport(order = 8)
     @ApiOperation(value = "权限设置", notes = "传入roleId集合以及menuId集合")
     public Result<?> grant(@RequestBody RoleMenuDTO dto) {
         return Result.status(roleService.grant(dto.getRoleIds(), dto.getMenuIds()));

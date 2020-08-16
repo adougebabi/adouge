@@ -10,9 +10,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Redis工具类
- *
- * @author Chill
+ * @author : Vinson
+ * @date : 2020/5/28 9:27 下午
  */
 @AllArgsConstructor
 public class RedisUtil {

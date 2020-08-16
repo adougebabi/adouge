@@ -9,6 +9,7 @@ import cn.hutool.crypto.Padding;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.spring.SpringUtil;
 import com.adouge.core.launch.constant.TokenConstant;
+import com.adouge.core.tool.constant.GlobalConstant;
 import com.adouge.core.tool.constant.StringConstant;
 import com.adouge.core.tool.utils.WebUtil;
 import com.adouge.secure.AdougeUser;
@@ -166,18 +167,26 @@ public class SecureUtil {
         String clientId = claims.get(TokenConstant.CLIENT_ID).toString();
         Long userId = Long.decode(claims.get(TokenConstant.USER_ID).toString());
         String tenantId = claims.get(TokenConstant.TENANT_ID).toString();
-        List<String> roleId = (List<String>) claims.get(TokenConstant.ROLE_ID);
         String account = claims.get(TokenConstant.ACCOUNT).toString();
-        List<String> roleName = (List<String>) claims.get(TokenConstant.ROLE_NAME);
         String userName = claims.get(TokenConstant.USER_NAME).toString();
+
+        List<Long> roleId = (List<Long>) claims.get(TokenConstant.ROLE_ID);
+        List<String> roleName = (List<String>) claims.get(TokenConstant.ROLE_NAME);
+
+        List<Long> deptId = (List<Long>) claims.get(TokenConstant.DEPT_ID);
+        List<String> deptName = (List<String>) claims.get(TokenConstant.DEPT_NAME);
+
         AdougeUser user = new AdougeUser();
         user.setClientId(clientId);
         user.setUserId(userId);
         user.setTenantId(tenantId);
         user.setAccount(account);
+        user.setUserName(userName);
         user.setRoleId(roleId);
         user.setRoleName(roleName);
-        user.setUserName(userName);
+        user.setDeptId(deptId);
+        user.setDeptName(deptName);
+
         return user;
     }
 
@@ -188,7 +197,7 @@ public class SecureUtil {
      * @return Claims
      */
     public static Claims getClaims(HttpServletRequest request) {
-        String auth = request.getHeader(TokenConstant.HEADER);
+        String auth = request.getHeader(SecureConstant.BASIC_HEADER_KEY);
         if (StrUtil.isNotBlank(auth) && auth.length() > TokenConstant.AUTH_LENGTH) {
             String headStr = auth.substring(0, 6).toLowerCase();
             if (headStr.compareTo(TokenConstant.BEARER) == 0) {
@@ -227,7 +236,7 @@ public class SecureUtil {
     @SneakyThrows
     public static String[] extractAndDecodeHeader() {
         // 获取请求头客户端信息
-        String header = Objects.requireNonNull(WebUtil.getRequest()).getHeader(SecureConstant.BASIC_HEADER_KEY);
+        String header = Objects.requireNonNull(WebUtil.getRequest()).getHeader(TokenConstant.HEADER);
         header = header.replace(SecureConstant.BASIC_HEADER_PREFIX_EXT, SecureConstant.BASIC_HEADER_PREFIX);
         if (!header.startsWith(SecureConstant.BASIC_HEADER_PREFIX)) {
             throw new SecureException("No client information in request header");
@@ -290,5 +299,28 @@ public class SecureUtil {
     public static List<String> getUserRole() {
         AdougeUser user = getUser();
         return (null == user) ? CollUtil.newArrayList() : user.getRoleName();
+    }
+    /**
+     * 获取租户id
+     * @return 租户id
+     */
+    public static String getTenantId() {
+        AdougeUser user = getUser();
+        return null == user ? "" : user.getTenantId();
+    }
+    /**
+     * 获取租户id
+     * @return 租户id
+     */
+    public static String getTenantId(HttpServletRequest request) {
+        AdougeUser user = getUser(request);
+        return null == user ? "" : user.getTenantId();
+    }
+
+    /**
+     * 判断是否管理员
+     */
+    public static boolean isAdministrator() {
+        return getUserRole().contains(GlobalConstant.ADMIN);
     }
 }

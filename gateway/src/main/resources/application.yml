@@ -1,23 +1,13 @@
 server:
   port: 8201
 spring:
-#  main:
-#    allow-bean-definition-overriding: true
-  redis:
-    #host: 129.211.7.107
-    port: 6379
-    #password: adougeniubi
   application:
     name: adouge-gateway
   cloud:
-    nacos:
-      discovery:
-        server-addr: 129.211.7.107:8848 #配置Nacos地址
     gateway:
       globalcors:
         corsConfigurations:
           '[/**]':
-#            allowedOrigins: "https://blog.csdn.net/moshowgame"
             allowedMethods:
               - GET
               - POST
@@ -28,8 +18,8 @@ spring:
           enabled: true #开启从注册中心动态创建路由的功能
           lower-case-service-id: true #使用小写服务名，默认是大写
       default-filters:
-#       熔断
-#       重试
+        #       熔断
+        #       重试
         - name: Retry
           args:
             retries: 1 #需要进行重试的次数
@@ -39,7 +29,7 @@ spring:
               maxBackoff: 50ms
               factor: 2
               basedOnPreviousValue: false
-#       限流
+    #       限流
     sentinel:
       transport:
         dashboard: 129.211.7.107:8858 #配置sentinel dashboard地址
@@ -54,16 +44,3 @@ spring:
       eager: true
       filter:
         enabled: true
-#      routes:
-#        - id: adouge-service-user
-#          uri: lb://adouge-service-user
-#          predicates:
-#            - Path=/adouge-service-user/**
-#          filters:
-#            - SwaggerHeaderFilter
-#            - StripPrefix=1
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'

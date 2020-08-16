@@ -14,6 +14,7 @@
         <result column="version" property="version"/>
         <result column="parent_id" property="parentId"/>
         <result column="dept_name" property="deptName"/>
+        <result column="created_dept" property="createdDept"/>
         <result column="full_name" property="fullName"/>
         <result column="sort" property="sort"/>
         <result column="remark" property="remark"/>

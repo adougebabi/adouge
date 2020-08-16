@@ -23,7 +23,7 @@
         <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
         <spring.boot.admin.version>2.2.2</spring.boot.admin.version>
 
-        <spring.boot.version>2.4.0-M1</spring.boot.version>
+        <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR6</spring.cloud.version>
         <spring.boot.admin.version>2.2.3</spring.boot.admin.version>
         <spring-boot.build-image.builder>registry.cn-hangzhou.aliyuncs.com/paketo-buildpacks/builder:base-platform-api-0.3</spring-boot.build-image.builder>
@@ -115,7 +115,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
                 <configuration>
-                    <builder>registry.cn-hangzhou.aliyuncs.com/paketo-buildpacks/builder:base-platform-api-0.3</builder>
                     <runImage>registry.cn-hangzhou.aliyuncs.com/paketo-buildpacks/run:base-cnb</runImage>
                     <layers>
                         <enabled>true</enabled>

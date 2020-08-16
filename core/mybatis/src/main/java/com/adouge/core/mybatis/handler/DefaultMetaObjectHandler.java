@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Slf4j
 @Component
-public class AdougeMetaObjectHandler implements MetaObjectHandler {
+public class DefaultMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
@@ -32,6 +32,7 @@ public class AdougeMetaObjectHandler implements MetaObjectHandler {
         this.fillStrategy(metaObject, "version",  1L);
         this.fillStrategy(metaObject, "updatedTime",  LocalDateTime.now());
         this.fillStrategy(metaObject, "updatedBy", user.getUserId());
+        this.fillStrategy(metaObject, "createdDept", user.getDeptId().get(0));
     }
 
     @Override

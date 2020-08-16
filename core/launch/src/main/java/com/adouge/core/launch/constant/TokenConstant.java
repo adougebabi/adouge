@@ -7,7 +7,7 @@ package com.adouge.core.launch.constant;
 public interface TokenConstant {
     String SIGN_KEY = "Adouge";
     String AVATAR = "avatar";
-    String HEADER = "Authorization";
+    String HEADER = "adouge-auth";
     String BEARER = "bearer";
     String ACCESS_TOKEN = "access_token";
     String REFRESH_TOKEN = "refresh_token";
@@ -16,8 +16,10 @@ public interface TokenConstant {
     String ACCOUNT = "account";
     String USER_ID = "user_id";
     String ROLE_ID = "role_id";
+    String DEPT_ID = "dept_id";
     String USER_NAME = "user_name";
     String ROLE_NAME = "role_name";
+    String DEPT_NAME = "dept_name";
     String TENANT_ID = "tenant_id";
     String CLIENT_ID = "client_id";
     String LICENSE = "license";

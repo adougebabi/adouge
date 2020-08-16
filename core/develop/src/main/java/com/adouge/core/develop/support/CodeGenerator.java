@@ -13,7 +13,6 @@ import com.baomidou.mybatisplus.generator.config.converts.OracleTypeConvert;
 import com.baomidou.mybatisplus.generator.config.converts.PostgreSqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -72,7 +71,7 @@ public class CodeGenerator {
     /**
      * 基础业务字段
      */
-    private String[] superEntityColumns = {"create_time", "create_user", "create_dept", "update_time", "update_user", "status", "is_deleted"};
+    private String[] superEntityColumns = {"created_time", "created_by", "created_dept", "updated_time", "updated_by", "status", "is_deleted"};
     /**
      * 租户字段
      */

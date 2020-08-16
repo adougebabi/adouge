@@ -74,4 +74,12 @@ public class BaseEntity {
     @TableField(value="version",fill = FieldFill.INSERT)
     private Long version;
 
+    /**
+     * 创建部门
+     */
+    @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "创建部门")
+    @TableField(value="created_dept",fill =FieldFill.INSERT)
+    private Long createdDept;
+
 }

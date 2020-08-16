@@ -14,6 +14,7 @@
         <result column="code" property="code"/>
         <result column="type" property="type"/>
         <result column="remark" property="remark"/>
+        <result column="created_dept" property="createdDept"/>
         <result column="is_deleted" property="isDeleted"/>
 
     </resultMap>

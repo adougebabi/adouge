@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adouge.service.scope.mapper.ScopeApiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="scopeApiResultMap" type="com.adouge.service.scope.entity.ScopeApi">
+        <result column="id" property="id"/>
+        <result column="version" property="version"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="menu_id" property="menuId"/>
+        <result column="resource_code" property="resourceCode"/>
+        <result column="created_dept" property="createdDept"/>
+        <result column="scope_name" property="scopeName"/>
+        <result column="scope_path" property="scopePath"/>
+        <result column="scope_type" property="scopeType"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+    <!--树节点-->
+    <resultMap id="treeNodeResultMap" type="com.adouge.core.tool.node.TreeNode">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="title" property="title"/>
+        <result column="v" property="value"/>
+        <result column="k" property="key"/>
+    </resultMap>
+
+    <select id="tree" resultMap="treeNodeResultMap">
+        select id, parent_id, name title, id v, id k
+        from adouge_menu
+        where id in (select parent_id from adouge_menu where id in (select menu_id from adouge_scope_api where is_deleted = 0))
+        union all
+        select id, parent_id, name title, id v, id k
+        from adouge_menu
+        where id in (select menu_id from adouge_scope_api where is_deleted = 0)
+        union all
+        select b.id, b.menu_id asparent_id, b.scope_name as title, b.id as v, b.id as k
+        from adouge_menu a
+        join adouge_scope_api b on a.id = b.menu_id
+        where a.is_deleted = 0
+        and a.type = 1
+    </select>
+
+    <select id="treeByRole" resultMap="treeNodeResultMap">
+        select b.id, a.parent_id, b.scope_name as title, b.id as v, b.id as k from adouge_menu a join adouge_scope_api b
+        on a.id=b.menu_id where a.is_deleted = 0 and a.type = 1
+        and a.id in ( select menu_id from adouge_role_menu where role_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        )
+        or a.id in (
+        select parent_id from blade_menu where is_deleted = 0 and type = 1
+        and a.id in ( select menu_id from adouge_role_menu where role_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        )
+        )
+    </select>
+</mapper>

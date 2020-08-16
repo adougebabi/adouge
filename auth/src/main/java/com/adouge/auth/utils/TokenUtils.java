@@ -24,16 +24,18 @@ public class TokenUtils {
                 .set(TokenConstant.TOKEN_TYPE, TokenConstant.ACCESS_TOKEN)
                 .set(TokenConstant.TENANT_ID, user.getTenantId())
                 .set(TokenConstant.USER_ID, user.getId())
-                .set(TokenConstant.ROLE_ID, userInfo.getRoles())
+                .set(TokenConstant.ROLE_ID, userInfo.getRoleIds())
+                .set(TokenConstant.DEPT_ID, userInfo.getDeptIds())
                 .set(TokenConstant.ACCOUNT, user.getAccount())
                 .set(TokenConstant.USER_NAME, user.getUsername())
-                .set(TokenConstant.ROLE_NAME, userInfo.getRoles());
+                .set(TokenConstant.ROLE_NAME, userInfo.getRoleNames())
+                .set(TokenConstant.DEPT_NAME, userInfo.getDeptNames());
         TokenInfo jwtToken = SecureUtil.createJwtToken(param, "audience", "issuer", TokenConstant.ACCESS_TOKEN);
 
         return AuthInfo.builder()
                 .account(user.getAccount())
                 .userName(user.getUsername())
-                .authority(ArrayUtil.toString(userInfo.getRoles()))
+                .authority(ArrayUtil.toString(userInfo.getRoleIds()))
                 .accessToken(jwtToken.getToken())
                 .expiresIn(jwtToken.getExpire())
                 .refreshToken(createRefreshToken(userInfo).getToken())

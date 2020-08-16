@@ -42,10 +42,20 @@ public class AdougeUser implements Serializable {
      * 角色id
      */
     @ApiModelProperty(hidden = true)
-    private List<String> roleId;
+    private List<Long> roleId;
+    /**
+     * 部门id
+     */
+    @ApiModelProperty(hidden = true)
+    private List<Long> deptId;
     /**
      * 角色名
      */
     @ApiModelProperty(hidden = true)
     private List<String> roleName;
+    /**
+     * 部门名
+     */
+    @ApiModelProperty(hidden = true)
+    private List<String> deptName;
 }

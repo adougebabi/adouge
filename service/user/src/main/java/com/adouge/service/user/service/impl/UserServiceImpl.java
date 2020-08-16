@@ -35,21 +35,27 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     @Override
     public UserInfo userInfo(String tenantId, String account, String password) {
         UserInfo userInfo = new UserInfo();
+        account = SecureUtil.decodeAes(account);
+        password = SecureUtil.decodeAes(password);
         User user = baseMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getTenantId, tenantId)
-                .eq(User::getAccount, SecureUtil.decodeAes(account))
-                .eq(User::getPassword, SecureUtil.decodeAes(password))
+                .eq(User::getAccount, account)
+                .eq(User::getPassword, password)
                 .eq(User::getIsDeleted, 0)
         );
         if (ObjectUtil.isNotNull(user)) {
             userInfo.setUser(user);
-            userInfo.setRoles(userRoleService.listRoleId(user.getId()));
+            userInfo.setRoleNames(userRoleService.listRoleName(user.getId()));
+            userInfo.setRoleIds(userRoleService.listRoleId(user.getId()));
+            userInfo.setDeptIds(userDeptService.listDeptId(user.getId()));
+            userInfo.setDeptNames(userDeptService.listDeptName(user.getId()));
         }
         return userInfo;
     }
 
     @Override
     public UserInfo userInfo(Long userId) {
+//        FIXME 查询权限
         UserInfo userInfo = new UserInfo();
         User user = baseMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getId, userId)
@@ -57,7 +63,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         );
         if (ObjectUtil.isNotNull(user)) {
             userInfo.setUser(user);
-            userInfo.setRoles(userRoleService.listRoleId(user.getId()));
+            userInfo.setTenantId(user.getTenantId());
+            userInfo.setRoleNames(userRoleService.listRoleName(user.getId()));
+            userInfo.setRoleIds(userRoleService.listRoleId(user.getId()));
+            userInfo.setDeptIds(userDeptService.listDeptId(user.getId()));
+            userInfo.setDeptNames(userDeptService.listDeptName(user.getId()));
             userInfo.setPermissions(CollUtil.newArrayList());
         }
         return userInfo;
@@ -77,6 +87,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
             userId = user.getId();
             userRoleService.remove(Wrappers.<UserRole>update().lambda().in(UserRole::getUserId, userId));
             userDeptService.remove(Wrappers.<UserDept>update().lambda().in(UserDept::getUserId, userId));
+            User byId = getById(userId);
+            user.setPassword(byId.getPassword());
         }
 
         List<UserRole> roles = CollUtil.newArrayList();

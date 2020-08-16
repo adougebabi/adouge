@@ -27,4 +27,5 @@ public interface IRoleService extends BaseService<Role> {
      * @return 是否成功
      */
     boolean grant(List<Long> roleIds, List<Long> menuIds);
+
 }
