@@ -3,7 +3,6 @@ package com.adouge.service.user.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.adouge.core.mybatis.base.BaseServiceImpl;
-import com.adouge.secure.utils.SecureUtil;
 import com.adouge.service.user.dto.UserDTO;
 import com.adouge.service.user.entity.User;
 import com.adouge.service.user.entity.UserDept;
@@ -35,8 +34,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     @Override
     public UserInfo userInfo(String tenantId, String account, String password) {
         UserInfo userInfo = new UserInfo();
-        account = SecureUtil.decodeAes(account);
-        password = SecureUtil.decodeAes(password);
+//        account = SecureUtil.decodeAes(account);
+//        password = SecureUtil.decodeAes(password);
         User user = baseMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getTenantId, tenantId)
                 .eq(User::getAccount, account)

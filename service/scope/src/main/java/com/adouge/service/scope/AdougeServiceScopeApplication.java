@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class AdougeServiceScopeApplication {
 
     public static void main(String[] args) {
-        AdougeApplication.run("adouge-service-scope", AdougeServiceScopeApplication.class, args);
+        AdougeApplication.run("service-scope", AdougeServiceScopeApplication.class, args);
     }
 
 }

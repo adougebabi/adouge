@@ -54,7 +54,7 @@
         </foreach>
         )
         or a.id in (
-        select parent_id from blade_menu where is_deleted = 0 and type = 1
+        select parent_id from adouge_menu where is_deleted = 0 and type = 1
         and a.id in ( select menu_id from adouge_role_menu where role_id in
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
             #{item}

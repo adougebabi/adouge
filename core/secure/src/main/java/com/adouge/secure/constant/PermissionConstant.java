@@ -8,11 +8,11 @@ import cn.hutool.core.util.StrUtil;
  */
 public interface PermissionConstant {
     static String permissionAllStatement(int size) {
-        return "select scope_path as path from adouge_scope_api where id in (select scope_id from blade_role_scope where scope_category = 2 and role_id in (" + buildHolder(size) + "))";
+        return "select scope_path as path from adouge_scope_api where id in (select scope_id from adouge_role_scope where scope_category = 2 and role_id in (" + buildHolder(size) + "))";
     }
 
     static String permissionStatement(int size) {
-        return "select resource_code as code from adouge_scope_api where resource_code = ? and id in (select scope_id from blade_role_scope where scope_category = 2 and role_id in (" + buildHolder(size) + "))";
+        return "select resource_code as code from adouge_scope_api where resource_code = ? and id in (select scope_id from adouge_role_scope where scope_category = 2 and role_id in (" + buildHolder(size) + "))";
     }
 
     static String buildHolder(int size) {

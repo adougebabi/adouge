@@ -33,4 +33,5 @@ public class ScopeController {
     public Result<?> grant(@RequestBody RoleScopeDTO dto) {
         return Result.status(roleScopeService.grant(dto));
     }
+
 }

@@ -30,7 +30,6 @@ public class DefaultTenantHandler implements TenantHandler {
 
     @Override
     public boolean doTableFilter(String tableName) {
-        Boolean a=SecureUtil.isAdministrator() || ignoreTables.contains(tableName) || !StrUtil.isNotBlank(SecureUtil.getTenantId());
-        return a;
+        return SecureUtil.isAdministrator() || ignoreTables.contains(tableName) || !StrUtil.isNotBlank(SecureUtil.getTenantId());
     }
 }

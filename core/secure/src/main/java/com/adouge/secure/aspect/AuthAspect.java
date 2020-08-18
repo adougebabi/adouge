@@ -21,6 +21,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -29,6 +30,7 @@ import java.lang.reflect.Method;
  * @date : 2020/8/13 11:19 下午
  */
 @Aspect
+@Component
 public class AuthAspect implements ApplicationContextAware {
     private static final ExpressionParser EXPRESSION_PARSER = new SpelExpressionParser();
     private ApplicationContext applicationContext;

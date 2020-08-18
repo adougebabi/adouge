@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.Assert;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /**
@@ -21,7 +22,9 @@ public class AdougeApplication {
 
         /* 默认设置 */
         Properties props = System.getProperties();
+        props.setProperty("file.encoding", StandardCharsets.UTF_8.name());
         props.setProperty("adouge.env", AppConstant.DEV_CODE);
+        props.setProperty("spring.application.name", AppConstant.APPLICATION_NAME_PREFIX+appName);
         return SpringApplication.run(objects, args);
     }
 }

@@ -1,6 +1,8 @@
 package com.adouge.secure.handler.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
+import com.adouge.core.tool.constant.StringConstant;
 import com.adouge.core.tool.utils.WebUtil;
 import com.adouge.secure.AdougeUser;
 import com.adouge.secure.constant.PermissionConstant;
@@ -21,9 +23,10 @@ import java.util.List;
 @AllArgsConstructor
 @Slf4j
 public class PermissionHandler implements IPermissionHandler {
-    private  final String SCOPE_CACHE_CODE = "apiScope:code:";
+    private final String SCOPE_CACHE_CODE = "apiScope:code:";
     private final String CACHE_PREFIX = "adouge:sys";
     private final JdbcTemplate jdbcTemplate;
+
     @Override
     public boolean permissionAll() {
         HttpServletRequest request = WebUtil.getRequest();
@@ -43,7 +46,14 @@ public class PermissionHandler implements IPermissionHandler {
 
     @Override
     public boolean hasPermission(String permission) {
-        return false;
+        HttpServletRequest request = WebUtil.getRequest();
+        AdougeUser user = SecureUtil.getUser();
+        if (request != null && user != null) {
+            List<?> codes = this.permissionCode(permission, user.getRoleId());
+            return codes.size() != 0;
+        } else {
+            return false;
+        }
     }
 
     private List<?> permissionPath(List<Long> roleIds) {
@@ -55,4 +65,17 @@ public class PermissionHandler implements IPermissionHandler {
 
         return permissions;
     }
+
+    private List<?> permissionCode(String permission, List<Long> roleIds) {
+        List<?> permissions = CacheUtil.get(CACHE_PREFIX, SCOPE_CACHE_CODE, permission + StringConstant.COLON + ArrayUtil.toString(roleIds), List.class);
+        if (permissions == null) {
+            List<Object> args = CollUtil.newArrayList(permission);
+            args.addAll(roleIds);
+            permissions = this.jdbcTemplate.queryForList(PermissionConstant.permissionStatement(roleIds.size()), args.toArray(), String.class);
+            CacheUtil.put(CACHE_PREFIX, SCOPE_CACHE_CODE, permission + StringConstant.COLON + ArrayUtil.toString(roleIds), permissions);
+        }
+
+        return permissions;
+    }
+
 }

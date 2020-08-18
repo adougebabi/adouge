@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class AdougeServiceSystemApplication {
 
     public static void main(String[] args) {
-        AdougeApplication.run("adouge-service-system", AdougeServiceSystemApplication.class, args);
+        AdougeApplication.run("service-system", AdougeServiceSystemApplication.class, args);
     }
 
 }

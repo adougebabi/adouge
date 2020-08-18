@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class AdougeAuthApplication {
 
     public static void main(String[] args) {
-        AdougeApplication.run("adouge-auth", AdougeAuthApplication.class, args);
+        AdougeApplication.run("auth", AdougeAuthApplication.class, args);
     }
 
 }

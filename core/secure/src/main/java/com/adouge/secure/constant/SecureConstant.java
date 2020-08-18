@@ -21,7 +21,7 @@ public interface SecureConstant {
     String BASIC_HEADER_PREFIX_EXT = "Basic%20";
 
     /**
-     * blade_client表字段
+     * adouge_client表字段
      */
     String CLIENT_FIELDS = "client_id, client_secret, access_token_time, refresh_token_time";
 

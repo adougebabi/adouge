@@ -14,7 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class AdougeGatewayApplication {
 
     public static void main(String[] args) {
-        AdougeApplication.run("adouge-gateway", AdougeGatewayApplication.class, args);
+        AdougeApplication.run("gateway", AdougeGatewayApplication.class, args);
     }
 
 }

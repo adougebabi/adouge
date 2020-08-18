@@ -14,7 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class AdougeAdminApplication {
 
     public static void main(String[] args) {
-        AdougeApplication.run("adouge-ops-admin", AdougeAdminApplication.class, args);
+        AdougeApplication.run("ops-admin", AdougeAdminApplication.class, args);
     }
 
 }

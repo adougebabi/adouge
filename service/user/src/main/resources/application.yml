@@ -1,6 +1,3 @@
-spring:
-  application:
-    name: adouge-service-user
 server:
   port: 8301
 logging:
